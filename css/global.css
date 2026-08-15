@@ -1,1 +1,630 @@
-/* AI PLS — Global Styles */
+/* =========================================================
+   AI PLS — GLOBAL DESIGN SYSTEM
+   Personal Learning System
+   ========================================================= */
+
+/* =========================================================
+   01. DESIGN TOKENS
+   ========================================================= */
+
+:root {
+
+  /* ---------- Colors ---------- */
+
+  --color-bg: #070b17;
+  --color-bg-soft: #0b1020;
+  --color-surface: #111827;
+  --color-surface-light: #172033;
+
+  --color-primary: #6366f1;
+  --color-primary-dark: #4f46e5;
+
+  --color-cyan: #22d3ee;
+
+  --color-text: #f8fafc;
+  --color-text-soft: #cbd5e1;
+  --color-text-muted: #94a3b8;
+
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+
+  --color-border: rgba(148, 163, 184, 0.14);
+
+  /* ---------- Gradients ---------- */
+
+  --gradient-primary:
+    linear-gradient(
+      135deg,
+      #6366f1 0%,
+      #22d3ee 100%
+    );
+
+  --gradient-soft:
+    linear-gradient(
+      135deg,
+      rgba(99, 102, 241, 0.16),
+      rgba(34, 211, 238, 0.06)
+    );
+
+  /* ---------- Typography ---------- */
+
+  --font-primary:
+    "Cairo",
+    "IBM Plex Sans Arabic",
+    system-ui,
+    sans-serif;
+
+  /* ---------- Radius ---------- */
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 999px;
+
+  /* ---------- Shadows ---------- */
+
+  --shadow-sm:
+    0 8px 25px rgba(0, 0, 0, 0.18);
+
+  --shadow-md:
+    0 16px 45px rgba(0, 0, 0, 0.25);
+
+  --shadow-lg:
+    0 24px 80px rgba(0, 0, 0, 0.35);
+
+  --shadow-primary:
+    0 15px 40px rgba(99, 102, 241, 0.25);
+
+  /* ---------- Layout ---------- */
+
+  --container-width: 1180px;
+
+  --container-padding: 24px;
+
+  /* ---------- Transitions ---------- */
+
+  --transition-fast: 180ms ease;
+
+  --transition-normal: 280ms ease;
+
+  --transition-slow: 500ms ease;
+}
+
+
+/* =========================================================
+   02. RESET
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+html {
+  scroll-behavior: smooth;
+
+  font-size: 16px;
+}
+
+
+body {
+
+  min-height: 100vh;
+
+  font-family: var(--font-primary);
+
+  color: var(--color-text);
+
+  background:
+
+    radial-gradient(
+      circle at 85% 5%,
+      rgba(99, 102, 241, 0.14),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 10% 45%,
+      rgba(34, 211, 238, 0.06),
+      transparent 25%
+    ),
+
+    var(--color-bg);
+
+  line-height: 1.6;
+
+  overflow-x: hidden;
+
+  -webkit-font-smoothing: antialiased;
+
+  text-rendering: optimizeLegibility;
+}
+
+
+/* =========================================================
+   03. ELEMENT NORMALIZATION
+   ========================================================= */
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+ul,
+ol {
+  list-style: none;
+}
+
+
+/* =========================================================
+   04. SELECTION
+   ========================================================= */
+
+::selection {
+  color: #ffffff;
+  background: var(--color-primary);
+}
+
+
+/* =========================================================
+   05. SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+
+::-webkit-scrollbar-thumb {
+
+  background:
+    rgba(148, 163, 184, 0.25);
+
+  border-radius: var(--radius-full);
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+
+  background:
+    rgba(99, 102, 241, 0.55);
+}
+
+
+/* =========================================================
+   06. CONTAINER
+   ========================================================= */
+
+.container {
+
+  width:
+    min(
+      var(--container-width),
+      calc(100% - (var(--container-padding) * 2))
+    );
+
+  margin-inline: auto;
+}
+
+
+/* =========================================================
+   07. TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-text);
+
+  font-weight: 800;
+
+  line-height: 1.2;
+}
+
+
+p {
+  color: var(--color-text-soft);
+}
+
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+
+.gradient-text {
+
+  background: var(--gradient-primary);
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  color: transparent;
+}
+
+
+/* =========================================================
+   08. BUTTON SYSTEM
+   ========================================================= */
+
+.btn {
+
+  min-height: 48px;
+
+  padding:
+    0 20px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  border-radius:
+    var(--radius-md);
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  transition:
+    transform var(--transition-normal),
+    box-shadow var(--transition-normal),
+    background var(--transition-normal),
+    border-color var(--transition-normal);
+}
+
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+
+.btn-primary {
+
+  color: #ffffff;
+
+  background:
+    var(--gradient-primary);
+
+  box-shadow:
+    var(--shadow-primary);
+}
+
+
+.btn-primary:hover {
+
+  box-shadow:
+    0 20px 50px rgba(99, 102, 241, 0.38);
+}
+
+
+.btn-secondary {
+
+  color:
+    var(--color-text-soft);
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  border:
+    1px solid var(--color-border);
+}
+
+
+.btn-secondary:hover {
+
+  color: #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.07);
+
+  border-color:
+    rgba(99, 102, 241, 0.3);
+}
+
+
+/* =========================================================
+   09. GLASS SURFACE
+   ========================================================= */
+
+.glass {
+
+  background:
+    rgba(17, 24, 39, 0.68);
+
+  border:
+    1px solid var(--color-border);
+
+  backdrop-filter:
+    blur(20px);
+
+  -webkit-backdrop-filter:
+    blur(20px);
+}
+
+
+/* =========================================================
+   10. CARD SYSTEM
+   ========================================================= */
+
+.card {
+
+  padding: 24px;
+
+  border:
+    1px solid var(--color-border);
+
+  border-radius:
+    var(--radius-lg);
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  transition:
+    transform var(--transition-normal),
+    border-color var(--transition-normal),
+    background var(--transition-normal);
+}
+
+
+.card:hover {
+
+  transform:
+    translateY(-5px);
+
+  border-color:
+    rgba(99, 102, 241, 0.28);
+
+  background:
+    rgba(99, 102, 241, 0.045);
+}
+
+
+/* =========================================================
+   11. SECTION SYSTEM
+   ========================================================= */
+
+.section {
+
+  width:
+    min(
+      var(--container-width),
+      calc(100% - (var(--container-padding) * 2))
+    );
+
+  margin-inline: auto;
+
+  padding-block: 100px;
+}
+
+
+.section-header {
+  max-width: 720px;
+
+  margin-bottom: 50px;
+}
+
+
+.section-label {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-bottom: 15px;
+
+  padding:
+    7px 13px;
+
+  border:
+    1px solid rgba(34, 211, 238, 0.2);
+
+  border-radius:
+    var(--radius-full);
+
+  color:
+    var(--color-cyan);
+
+  background:
+    rgba(34, 211, 238, 0.05);
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+
+.section-title {
+
+  font-size:
+    clamp(32px, 5vw, 56px);
+
+  letter-spacing:
+    -1.5px;
+}
+
+
+.section-description {
+
+  margin-top: 18px;
+
+  color:
+    var(--color-text-muted);
+
+  font-size: 16px;
+
+  line-height: 1.9;
+}
+
+
+/* =========================================================
+   12. STATUS DOT
+   ========================================================= */
+
+.status-dot {
+
+  width: 8px;
+
+  height: 8px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    var(--color-cyan);
+
+  box-shadow:
+    0 0 0 5px rgba(34, 211, 238, 0.08);
+
+  animation:
+    statusPulse 2s infinite;
+}
+
+
+@keyframes statusPulse {
+
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(34, 211, 238, 0.35);
+  }
+
+  70% {
+    box-shadow:
+      0 0 0 8px rgba(34, 211, 238, 0);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(34, 211, 238, 0);
+  }
+}
+
+
+/* =========================================================
+   13. FOCUS STATES
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+
+  outline:
+    2px solid var(--color-cyan);
+
+  outline-offset:
+    3px;
+}
+
+
+/* =========================================================
+   14. HIDDEN UTILITY
+   ========================================================= */
+
+.hidden {
+  display: none !important;
+}
+
+
+/* =========================================================
+   15. RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  :root {
+    --container-padding: 16px;
+  }
+
+
+  .section {
+    padding-block: 75px;
+  }
+
+
+  .section-title {
+    font-size: 36px;
+  }
+
+
+  .section-description {
+    font-size: 14px;
+  }
+
+
+  .btn {
+    min-height: 50px;
+  }
+}
+
+
+/* =========================================================
+   16. REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+
+  *,
+  *::before,
+  *::after {
+
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+  }
+        }
