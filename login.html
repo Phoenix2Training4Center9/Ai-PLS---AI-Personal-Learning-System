@@ -3,6 +3,11 @@
 
 <head>
 
+  <!-- =====================================================
+       AI PLS — AUTHENTICATION
+       Login Page
+  ====================================================== -->
+
   <meta charset="UTF-8">
 
   <meta
@@ -12,7 +17,7 @@
 
   <meta
     name="description"
-    content="تسجيل الدخول إلى AI PLS — نظام التعلم الشخصي المدعوم بالذكاء الاصطناعي."
+    content="تسجيل الدخول إلى AI PLS — نظام التعلم الشخصي بالذكاء الاصطناعي."
   >
 
   <meta
@@ -42,17 +47,22 @@
 
 
   <!-- =====================================================
-       GLOBAL + AUTH STYLES
+       GLOBAL DESIGN
   ====================================================== -->
 
   <link
     rel="stylesheet"
-    href="../css/global.css"
+    href="css/global.css"
   >
+
+
+  <!-- =====================================================
+       AUTH DESIGN
+  ====================================================== -->
 
   <link
     rel="stylesheet"
-    href="../css/auth.css"
+    href="css/auth.css"
   >
 
 </head>
@@ -65,7 +75,10 @@
        BACKGROUND
   ====================================================== -->
 
-  <div class="auth-background" aria-hidden="true">
+  <div
+    class="auth-background"
+    aria-hidden="true"
+  >
 
     <div class="auth-orb auth-orb-one"></div>
 
@@ -77,15 +90,15 @@
 
 
   <!-- =====================================================
-       AUTH HEADER
+       HEADER
   ====================================================== -->
 
   <header class="auth-header">
 
     <a
-      href="../index.html"
+      href="index.html"
       class="auth-brand"
-      aria-label="العودة إلى الصفحة الرئيسية"
+      aria-label="العودة إلى AI PLS"
     >
 
       <span
@@ -103,46 +116,45 @@
 
 
     <a
-      href="../index.html"
+      href="index.html"
       class="auth-back"
     >
-      العودة للرئيسية
+      ← العودة للموقع
     </a>
 
   </header>
 
 
-
   <!-- =====================================================
-       MAIN AUTH AREA
+       MAIN
   ====================================================== -->
 
   <main class="auth-main">
 
-
-    <section
-      class="auth-container"
-      aria-labelledby="login-title"
-    >
+    <div class="auth-container">
 
 
       <!-- =================================================
-           LEFT / BRAND MESSAGE
+           INTRO
       ================================================== -->
 
-      <div class="auth-intro">
-
+      <section
+        class="auth-intro"
+        aria-labelledby="auth-title"
+      >
 
         <span class="auth-eyebrow">
-          PERSONAL LEARNING SYSTEM
+          AI PERSONAL LEARNING SYSTEM
         </span>
 
 
-        <h1>
+        <h1 id="auth-title">
 
-          رحلتك التعليمية
+          مرحباً بك
+          <br>
+
           <span class="gradient-text">
-            تبدأ من هنا.
+            في رحلة التعلم.
           </span>
 
         </h1>
@@ -150,29 +162,35 @@
 
         <p>
 
-          سجّل الدخول إلى مساحة التعلم الخاصة بك
-          وواصل من حيث توقفت.
+          سجّل دخولك إلى AI PLS واستمر في بناء
+          رحلة تعلم شخصية تساعدك على الوصول إلى
+          أهدافك بطريقة أكثر وضوحاً وذكاءً.
 
         </p>
 
+
+        <!-- BENEFITS -->
 
         <div class="auth-benefits">
 
 
           <div class="auth-benefit">
 
-            <span class="auth-benefit-icon">
+            <span
+              class="auth-benefit-icon"
+              aria-hidden="true"
+            >
               🎯
             </span>
 
             <div>
 
               <strong>
-                خطتك التعليمية
+                خطتك التعليمية معك
               </strong>
 
               <span>
-                كل أهدافك ومهامك في مكان واحد
+                تابع أهدافك ومهامك من مكان واحد.
               </span>
 
             </div>
@@ -182,7 +200,10 @@
 
           <div class="auth-benefit">
 
-            <span class="auth-benefit-icon">
+            <span
+              class="auth-benefit-icon"
+              aria-hidden="true"
+            >
               🧠
             </span>
 
@@ -193,7 +214,7 @@
               </strong>
 
               <span>
-                تعلم بمساعدة الذكاء الاصطناعي
+                تعلم، اسأل، لخّص، وتدرّب بمساعدة AI.
               </span>
 
             </div>
@@ -203,7 +224,10 @@
 
           <div class="auth-benefit">
 
-            <span class="auth-benefit-icon">
+            <span
+              class="auth-benefit-icon"
+              aria-hidden="true"
+            >
               📈
             </span>
 
@@ -214,7 +238,7 @@
               </strong>
 
               <span>
-                تابع تطورك باستمرار
+                ارجع إلى رحلتك واستمر من حيث توقفت.
               </span>
 
             </div>
@@ -224,8 +248,7 @@
 
         </div>
 
-
-      </div>
+      </section>
 
 
 
@@ -233,29 +256,34 @@
            LOGIN CARD
       ================================================== -->
 
-      <div class="auth-card">
+      <section
+        class="auth-card"
+        aria-labelledby="login-title"
+      >
 
+
+        <!-- CARD HEADER -->
 
         <div class="auth-card-header">
 
-
-          <div class="auth-card-icon">
-            ✦
-          </div>
-
+          <span
+            class="auth-card-icon"
+            aria-hidden="true"
+          >
+            🔐
+          </span>
 
           <div>
 
             <h2 id="login-title">
-              أهلاً بعودتك
+              تسجيل الدخول
             </h2>
 
             <p>
-              سجّل الدخول للمتابعة إلى AI PLS
+              ادخل إلى مساحة التعلم الخاصة بك
             </p>
 
           </div>
-
 
         </div>
 
@@ -276,9 +304,10 @@
 
           <div class="form-group">
 
-            <label for="email">
+            <label for="login-email">
               البريد الإلكتروني
             </label>
+
 
             <div class="input-wrapper">
 
@@ -289,22 +318,25 @@
                 @
               </span>
 
+
               <input
                 type="email"
-                id="email"
+                id="login-email"
                 name="email"
-                placeholder="name@example.com"
+                placeholder="example@email.com"
                 autocomplete="email"
+                inputmode="email"
                 required
               >
 
             </div>
 
-            <small
+
+            <span
               class="form-error"
-              id="email-error"
+              id="login-email-error"
               aria-live="polite"
-            ></small>
+            ></span>
 
           </div>
 
@@ -316,13 +348,15 @@
 
             <div class="form-label-row">
 
-              <label for="password">
+              <label for="login-password">
                 كلمة المرور
               </label>
+
 
               <a
                 href="#forgot-password"
                 class="forgot-link"
+                id="forgot-password"
               >
                 نسيت كلمة المرور؟
               </a>
@@ -336,17 +370,16 @@
                 class="input-icon"
                 aria-hidden="true"
               >
-                •
+                🔑
               </span>
 
 
               <input
                 type="password"
-                id="password"
+                id="login-password"
                 name="password"
                 placeholder="أدخل كلمة المرور"
                 autocomplete="current-password"
-                minlength="6"
                 required
               >
 
@@ -354,9 +387,8 @@
               <button
                 type="button"
                 class="password-toggle"
-                id="password-toggle"
+                data-password-toggle="login-password"
                 aria-label="إظهار كلمة المرور"
-                aria-pressed="false"
               >
                 إظهار
               </button>
@@ -364,11 +396,11 @@
             </div>
 
 
-            <small
+            <span
               class="form-error"
-              id="password-error"
+              id="login-password-error"
               aria-live="polite"
-            ></small>
+            ></span>
 
           </div>
 
@@ -380,7 +412,7 @@
 
             <input
               type="checkbox"
-              id="remember"
+              id="remember-me"
               name="remember"
             >
 
@@ -391,6 +423,16 @@
             </span>
 
           </label>
+
+
+
+          <!-- STATUS -->
+
+          <div
+            class="auth-status"
+            id="login-status"
+            aria-live="polite"
+          ></div>
 
 
 
@@ -407,29 +449,18 @@
             </span>
 
             <span
-              class="submit-loader"
-              aria-hidden="true"
-            ></span>
-
-            <span
               class="submit-arrow"
               aria-hidden="true"
             >
               ←
             </span>
 
+            <span
+              class="submit-loader"
+              aria-hidden="true"
+            ></span>
+
           </button>
-
-
-          <!-- STATUS -->
-
-          <div
-            class="auth-status"
-            id="auth-status"
-            role="status"
-            aria-live="polite"
-          ></div>
-
 
         </form>
 
@@ -454,7 +485,7 @@
 
 
         <!-- =================================================
-             SOCIAL / DEMO
+             DEMO LOGIN
         ================================================== -->
 
         <button
@@ -463,13 +494,14 @@
           id="demo-login"
         >
 
-          <span class="social-icon">
+          <span
+            class="social-icon"
+            aria-hidden="true"
+          >
             ✦
           </span>
 
-          <span>
-            تجربة AI PLS
-          </span>
+          تجربة AI PLS بشكل تجريبي
 
         </button>
 
@@ -490,9 +522,9 @@
         </p>
 
 
-      </div>
+      </section>
 
-    </section>
+    </div>
 
   </main>
 
@@ -505,11 +537,11 @@
   <footer class="auth-footer">
 
     <span>
-      © <span id="auth-year"></span> AI PLS
+      AI PLS — Personal Learning System
     </span>
 
     <span>
-      تعلم بذكاء. أنجز أكثر.
+      © <span id="current-year"></span> AI PLS
     </span>
 
   </footer>
@@ -520,10 +552,224 @@
        JAVASCRIPT
   ====================================================== -->
 
-  <script
-    src="../js/auth.js"
-    defer
-  ></script>
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      /* -----------------------------------------------
+         CURRENT YEAR
+      ----------------------------------------------- */
+
+      const yearElement =
+        document.getElementById("current-year");
+
+      if (yearElement) {
+        yearElement.textContent =
+          new Date().getFullYear();
+      }
+
+
+      /* -----------------------------------------------
+         PASSWORD VISIBILITY
+      ----------------------------------------------- */
+
+      const passwordButtons =
+        document.querySelectorAll(
+          "[data-password-toggle]"
+        );
+
+
+      passwordButtons.forEach((button) => {
+
+        button.addEventListener("click", () => {
+
+          const targetId =
+            button.getAttribute(
+              "data-password-toggle"
+            );
+
+          const input =
+            document.getElementById(targetId);
+
+          if (!input) return;
+
+
+          const isPassword =
+            input.type === "password";
+
+
+          input.type =
+            isPassword
+              ? "text"
+              : "password";
+
+
+          button.textContent =
+            isPassword
+              ? "إخفاء"
+              : "إظهار";
+
+
+          button.setAttribute(
+            "aria-label",
+            isPassword
+              ? "إخفاء كلمة المرور"
+              : "إظهار كلمة المرور"
+          );
+
+        });
+
+      });
+
+
+      /* -----------------------------------------------
+         DEMO LOGIN
+      ----------------------------------------------- */
+
+      const demoButton =
+        document.getElementById("demo-login");
+
+      const emailInput =
+        document.getElementById("login-email");
+
+      const passwordInput =
+        document.getElementById("login-password");
+
+      const status =
+        document.getElementById("login-status");
+
+
+      if (demoButton) {
+
+        demoButton.addEventListener("click", () => {
+
+          if (emailInput) {
+
+            emailInput.value =
+              "demo@aipls.app";
+
+          }
+
+
+          if (passwordInput) {
+
+            passwordInput.value =
+              "AI-PLS-DEMO";
+
+          }
+
+
+          if (status) {
+
+            status.className =
+              "auth-status success";
+
+            status.textContent =
+              "تم تجهيز الحساب التجريبي. اضغط «تسجيل الدخول» للمتابعة.";
+
+          }
+
+        });
+
+      }
+
+
+      /* -----------------------------------------------
+         DEMO FORM HANDLER
+         مؤقت حتى نربطه بالـ Backend
+      ----------------------------------------------- */
+
+      const form =
+        document.getElementById("login-form");
+
+      if (form) {
+
+        form.addEventListener("submit", (event) => {
+
+          event.preventDefault();
+
+
+          const email =
+            emailInput
+              ? emailInput.value.trim()
+              : "";
+
+          const password =
+            passwordInput
+              ? passwordInput.value
+              : "";
+
+
+          if (status) {
+
+            status.className =
+              "auth-status";
+
+            status.textContent =
+              "";
+
+          }
+
+
+          if (!email) {
+
+            if (status) {
+
+              status.className =
+                "auth-status error";
+
+              status.textContent =
+                "من فضلك أدخل البريد الإلكتروني.";
+
+            }
+
+            if (emailInput) {
+              emailInput.focus();
+            }
+
+            return;
+
+          }
+
+
+          if (!password) {
+
+            if (status) {
+
+              status.className =
+                "auth-status error";
+
+              status.textContent =
+                "من فضلك أدخل كلمة المرور.";
+
+            }
+
+            if (passwordInput) {
+              passwordInput.focus();
+            }
+
+            return;
+
+          }
+
+
+          if (status) {
+
+            status.className =
+              "auth-status success";
+
+            status.textContent =
+              "واجهة تسجيل الدخول جاهزة. الربط الحقيقي بالحسابات سيكون في مرحلة الـ Backend.";
+
+          }
+
+        });
+
+      }
+
+    });
+
+  </script>
 
 
 </body>
