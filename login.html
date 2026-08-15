@@ -1,1 +1,2421 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
+<head>
+
+  <!-- =====================================================
+       AI PLS — AUTHENTICATION
+       Login / Register Experience
+  ====================================================== -->
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="AI PLS — تسجيل الدخول وإنشاء حساب جديد."
+  >
+
+  <meta
+    name="theme-color"
+    content="#070b17"
+  >
+
+  <meta
+    name="author"
+    content="AI PLS"
+  >
+
+  <title>AI PLS — تسجيل الدخول</title>
+
+
+  <!-- =====================================================
+       FONTS
+  ====================================================== -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- =====================================================
+       AUTH STYLES
+  ====================================================== -->
+
+  <style>
+
+    /* =====================================================
+       01. DESIGN TOKENS
+    ====================================================== */
+
+    :root {
+
+      --bg: #070b17;
+      --bg-soft: #0b1020;
+
+      --surface: rgba(17, 24, 39, 0.78);
+      --surface-solid: #111827;
+
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+
+      --cyan: #22d3ee;
+
+      --text: #f8fafc;
+      --text-soft: #cbd5e1;
+      --muted: #94a3b8;
+
+      --border: rgba(148, 163, 184, 0.14);
+
+      --danger: #ef4444;
+      --success: #22c55e;
+
+      --gradient:
+        linear-gradient(
+          135deg,
+          #6366f1 0%,
+          #22d3ee 100%
+        );
+
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+
+      --shadow:
+        0 30px 100px rgba(0, 0, 0, 0.45);
+    }
+
+
+    /* =====================================================
+       02. RESET
+    ====================================================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+    html {
+      min-height: 100%;
+      scroll-behavior: smooth;
+    }
+
+
+    body {
+
+      min-height: 100vh;
+
+      font-family:
+        "Cairo",
+        "IBM Plex Sans Arabic",
+        sans-serif;
+
+      color: var(--text);
+
+      background:
+
+        radial-gradient(
+          circle at 85% 10%,
+          rgba(99, 102, 241, 0.18),
+          transparent 30%
+        ),
+
+        radial-gradient(
+          circle at 10% 85%,
+          rgba(34, 211, 238, 0.08),
+          transparent 25%
+        ),
+
+        var(--bg);
+
+      overflow-x: hidden;
+
+      -webkit-font-smoothing: antialiased;
+    }
+
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+
+    button {
+      border: 0;
+    }
+
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    /* =====================================================
+       03. BACKGROUND
+    ====================================================== */
+
+    .auth-page {
+
+      min-height: 100vh;
+
+      position: relative;
+
+      display: flex;
+
+      flex-direction: column;
+
+      overflow: hidden;
+    }
+
+
+    .background-grid {
+
+      position: fixed;
+
+      inset: 0;
+
+      pointer-events: none;
+
+      opacity: 0.18;
+
+      background-image:
+
+        linear-gradient(
+          rgba(148, 163, 184, 0.035) 1px,
+          transparent 1px
+        ),
+
+        linear-gradient(
+          90deg,
+          rgba(148, 163, 184, 0.035) 1px,
+          transparent 1px
+        );
+
+      background-size:
+        55px 55px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          black,
+          transparent 85%
+        );
+    }
+
+
+    .orb {
+
+      position: fixed;
+
+      width: 320px;
+      height: 320px;
+
+      border-radius: 50%;
+
+      pointer-events: none;
+
+      filter: blur(70px);
+
+      opacity: 0.18;
+    }
+
+
+    .orb-one {
+
+      top: -150px;
+      right: -100px;
+
+      background: var(--primary);
+    }
+
+
+    .orb-two {
+
+      bottom: -180px;
+      left: -120px;
+
+      background: var(--cyan);
+    }
+
+
+    /* =====================================================
+       04. HEADER
+    ====================================================== */
+
+    .auth-header {
+
+      width: min(
+        1180px,
+        calc(100% - 40px)
+      );
+
+      margin: 0 auto;
+
+      padding: 24px 0;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      position: relative;
+
+      z-index: 5;
+    }
+
+
+    .brand {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 11px;
+
+      font-weight: 800;
+
+      font-size: 18px;
+    }
+
+
+    .brand-mark {
+
+      width: 42px;
+      height: 42px;
+
+      display: grid;
+
+      place-items: center;
+
+      border-radius: 13px;
+
+      background: var(--gradient);
+
+      box-shadow:
+        0 12px 35px
+        rgba(99, 102, 241, 0.32);
+
+      font-size: 19px;
+    }
+
+
+    .brand-text {
+
+      display: flex;
+
+      flex-direction: column;
+
+      line-height: 1.2;
+    }
+
+
+    .brand-text strong {
+      font-size: 17px;
+    }
+
+
+    .brand-text small {
+
+      color: var(--muted);
+
+      font-size: 9px;
+
+      font-weight: 500;
+
+      margin-top: 2px;
+    }
+
+
+    .back-home {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      padding: 9px 13px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 11px;
+
+      color: var(--muted);
+
+      background:
+        rgba(255,255,255,0.025);
+
+      font-size: 12px;
+
+      transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+    }
+
+
+    .back-home:hover {
+
+      color: var(--text);
+
+      background:
+        rgba(255,255,255,0.055);
+
+      border-color:
+        rgba(99,102,241,0.30);
+
+      transform:
+        translateY(-1px);
+    }
+
+
+    /* =====================================================
+       05. MAIN
+    ====================================================== */
+
+    .auth-main {
+
+      flex: 1;
+
+      width: min(
+        1180px,
+        calc(100% - 40px)
+      );
+
+      margin: 0 auto;
+
+      padding:
+        45px 0 80px;
+
+      display: grid;
+
+      grid-template-columns:
+        0.95fr 1.05fr;
+
+      gap: 80px;
+
+      align-items: center;
+
+      position: relative;
+
+      z-index: 2;
+    }
+
+
+    /* =====================================================
+       06. BRAND MESSAGE
+    ====================================================== */
+
+    .auth-intro {
+
+      max-width: 520px;
+
+      padding-left: 20px;
+    }
+
+
+    .intro-badge {
+
+      width: fit-content;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      padding:
+        8px 13px;
+
+      border:
+        1px solid
+        rgba(99,102,241,0.22);
+
+      border-radius: 999px;
+
+      background:
+        rgba(99,102,241,0.08);
+
+      color: #c7d2fe;
+
+      font-size: 11px;
+
+      margin-bottom: 24px;
+    }
+
+
+    .intro-dot {
+
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: var(--cyan);
+
+      box-shadow:
+        0 0 0 5px
+        rgba(34,211,238,0.08);
+    }
+
+
+    .auth-intro h1 {
+
+      font-size:
+        clamp(38px, 4.7vw, 66px);
+
+      line-height: 1.15;
+
+      letter-spacing:
+        -2px;
+
+      margin-bottom: 22px;
+
+      font-weight: 800;
+    }
+
+
+    .gradient-text {
+
+      background: var(--gradient);
+
+      -webkit-background-clip: text;
+
+      background-clip: text;
+
+      color: transparent;
+    }
+
+
+    .intro-description {
+
+      color: var(--text-soft);
+
+      font-size: 15px;
+
+      line-height: 2;
+
+      max-width: 500px;
+
+      margin-bottom: 30px;
+    }
+
+
+    .intro-points {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 12px;
+    }
+
+
+    .intro-point {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+
+    .intro-point-icon {
+
+      width: 30px;
+      height: 30px;
+
+      flex-shrink: 0;
+
+      display: grid;
+
+      place-items: center;
+
+      border-radius: 9px;
+
+      background:
+        rgba(99,102,241,0.09);
+
+      border:
+        1px solid
+        rgba(99,102,241,0.14);
+
+      font-size: 13px;
+    }
+
+
+    /* =====================================================
+       07. AUTH CARD
+    ====================================================== */
+
+    .auth-card {
+
+      width: 100%;
+
+      max-width: 500px;
+
+      margin-right: auto;
+
+      padding: 34px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        var(--radius-lg);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.075),
+          rgba(255,255,255,0.025)
+        );
+
+      box-shadow:
+        var(--shadow);
+
+      backdrop-filter:
+        blur(24px);
+
+      -webkit-backdrop-filter:
+        blur(24px);
+    }
+
+
+    /* =====================================================
+       08. AUTH HEADER
+    ====================================================== */
+
+    .auth-card-header {
+
+      margin-bottom: 26px;
+    }
+
+
+    .auth-card-header h2 {
+
+      font-size: 26px;
+
+      line-height: 1.3;
+
+      margin-bottom: 8px;
+    }
+
+
+    .auth-card-header p {
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.8;
+    }
+
+
+    /* =====================================================
+       09. TABS
+    ====================================================== */
+
+    .auth-tabs {
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      padding: 4px;
+
+      margin-bottom: 25px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 14px;
+
+      background:
+        rgba(0,0,0,0.14);
+    }
+
+
+    .auth-tab {
+
+      min-height: 42px;
+
+      border-radius: 10px;
+
+      background: transparent;
+
+      color: var(--muted);
+
+      cursor: pointer;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+
+    .auth-tab.active {
+
+      color: var(--text);
+
+      background:
+        rgba(99,102,241,0.16);
+
+      box-shadow:
+        0 6px 20px
+        rgba(0,0,0,0.12);
+    }
+
+
+    /* =====================================================
+       10. FORM
+    ====================================================== */
+
+    .auth-form {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 17px;
+    }
+
+
+    .form-field {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 7px;
+    }
+
+
+    .form-label {
+
+      color: var(--text-soft);
+
+      font-size: 11px;
+
+      font-weight: 700;
+    }
+
+
+    .input-wrapper {
+
+      position: relative;
+    }
+
+
+    .form-input {
+
+      width: 100%;
+
+      height: 50px;
+
+      padding:
+        0 15px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 13px;
+
+      outline: none;
+
+      background:
+        rgba(0,0,0,0.16);
+
+      color: var(--text);
+
+      font-size: 12px;
+
+      transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+
+    .form-input::placeholder {
+      color: #64748b;
+    }
+
+
+    .form-input:focus {
+
+      border-color:
+        rgba(99,102,241,0.65);
+
+      background:
+        rgba(99,102,241,0.045);
+
+      box-shadow:
+        0 0 0 4px
+        rgba(99,102,241,0.08);
+    }
+
+
+    .password-input {
+      padding-left: 48px;
+    }
+
+
+    .password-toggle {
+
+      position: absolute;
+
+      left: 12px;
+
+      top: 50%;
+
+      transform:
+        translateY(-50%);
+
+      width: 30px;
+      height: 30px;
+
+      display: grid;
+
+      place-items: center;
+
+      border-radius: 8px;
+
+      background: transparent;
+
+      color: var(--muted);
+
+      cursor: pointer;
+
+      font-size: 13px;
+
+      transition:
+        color 0.2s ease,
+        background 0.2s ease;
+    }
+
+
+    .password-toggle:hover {
+
+      color: var(--text);
+
+      background:
+        rgba(255,255,255,0.05);
+    }
+
+
+    /* =====================================================
+       11. FORM OPTIONS
+    ====================================================== */
+
+    .form-options {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+      margin-top: -2px;
+    }
+
+
+    .remember {
+
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+
+      cursor: pointer;
+    }
+
+
+    .remember input {
+
+      width: 14px;
+      height: 14px;
+
+      accent-color: var(--primary);
+
+      cursor: pointer;
+    }
+
+
+    .forgot-link {
+
+      color: #a5b4fc;
+
+      font-size: 10px;
+
+      transition:
+        color 0.2s ease;
+    }
+
+
+    .forgot-link:hover {
+      color: var(--cyan);
+    }
+
+
+    /* =====================================================
+       12. PRIMARY AUTH BUTTON
+    ====================================================== */
+
+    .auth-submit {
+
+      width: 100%;
+
+      min-height: 51px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 9px;
+
+      border-radius: 13px;
+
+      background: var(--gradient);
+
+      color: white;
+
+      cursor: pointer;
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      box-shadow:
+        0 14px 35px
+        rgba(99,102,241,0.22);
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease;
+    }
+
+
+    .auth-submit:hover {
+
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 18px 42px
+        rgba(99,102,241,0.34);
+    }
+
+
+    .auth-submit:active {
+
+      transform:
+        translateY(0);
+    }
+
+
+    .auth-submit:disabled {
+
+      opacity: 0.65;
+
+      cursor: not-allowed;
+
+      transform: none;
+    }
+
+
+    /* =====================================================
+       13. DIVIDER
+    ====================================================== */
+
+    .divider {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      color: #64748b;
+
+      font-size: 9px;
+
+      margin: 3px 0;
+    }
+
+
+    .divider::before,
+    .divider::after {
+
+      content: "";
+
+      flex: 1;
+
+      height: 1px;
+
+      background:
+        var(--border);
+    }
+
+
+    /* =====================================================
+       14. SOCIAL BUTTONS
+    ====================================================== */
+
+    .social-buttons {
+
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 9px;
+    }
+
+
+    .social-button {
+
+      min-height: 45px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 7px;
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 12px;
+
+      background:
+        rgba(255,255,255,0.025);
+
+      color: var(--text-soft);
+
+      cursor: pointer;
+
+      font-size: 10px;
+
+      font-weight: 600;
+
+      transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+    }
+
+
+    .social-button:hover {
+
+      background:
+        rgba(255,255,255,0.06);
+
+      border-color:
+        rgba(148,163,184,0.28);
+
+      transform:
+        translateY(-1px);
+    }
+
+
+    .social-icon {
+
+      width: 19px;
+      height: 19px;
+
+      display: grid;
+
+      place-items: center;
+
+      border-radius: 6px;
+
+      background:
+        rgba(255,255,255,0.07);
+
+      font-size: 10px;
+    }
+
+
+    /* =====================================================
+       15. REGISTER EXTRA
+    ====================================================== */
+
+    .register-fields {
+
+      display: none;
+
+      animation:
+        fadeIn 0.25s ease;
+    }
+
+
+    .auth-card.register-mode
+    .register-fields {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 17px;
+    }
+
+
+    .auth-card.register-mode
+    .login-only {
+
+      display: none;
+    }
+
+
+    @keyframes fadeIn {
+
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    /* =====================================================
+       16. LEGAL
+    ====================================================== */
+
+    .legal-text {
+
+      color: #64748b;
+
+      font-size: 9px;
+
+      line-height: 1.8;
+
+      text-align: center;
+
+      margin-top: 2px;
+    }
+
+
+    .legal-text a {
+
+      color: #94a3b8;
+
+      text-decoration:
+        underline;
+
+      text-underline-offset: 3px;
+    }
+
+
+    /* =====================================================
+       17. FOOTER
+    ====================================================== */
+
+    .auth-footer {
+
+      width: min(
+        1180px,
+        calc(100% - 40px)
+      );
+
+      margin: 0 auto;
+
+      padding:
+        20px 0 28px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      color: #64748b;
+
+      font-size: 9px;
+
+      border-top:
+        1px solid var(--border);
+
+      position: relative;
+
+      z-index: 2;
+    }
+
+
+    /* =====================================================
+       18. RESPONSIVE — TABLET
+    ====================================================== */
+
+    @media (max-width: 950px) {
+
+      .auth-main {
+
+        grid-template-columns:
+          1fr;
+
+        gap: 45px;
+
+        padding-top: 35px;
+
+        justify-items: center;
+      }
+
+
+      .auth-intro {
+
+        max-width: 650px;
+
+        padding-left: 0;
+
+        text-align: center;
+      }
+
+
+      .intro-badge {
+
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+
+      .intro-description {
+
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+
+      .intro-points {
+
+        align-items: center;
+      }
+
+
+      .auth-card {
+
+        margin: 0 auto;
+
+        max-width: 520px;
+      }
+    }
+
+
+    /* =====================================================
+       19. RESPONSIVE — MOBILE
+    ====================================================== */
+
+    @media (max-width: 600px) {
+
+      .auth-header {
+
+        width:
+          calc(100% - 24px);
+
+        padding:
+          16px 0;
+      }
+
+
+      .brand-mark {
+
+        width: 38px;
+        height: 38px;
+
+        border-radius: 11px;
+      }
+
+
+      .brand-text strong {
+        font-size: 15px;
+      }
+
+
+      .brand-text small {
+        display: none;
+      }
+
+
+      .back-home {
+
+        padding:
+          8px 10px;
+
+        font-size: 10px;
+      }
+
+
+      .auth-main {
+
+        width:
+          calc(100% - 24px);
+
+        padding:
+          35px 0 55px;
+
+        gap: 35px;
+      }
+
+
+      .auth-intro h1 {
+
+        font-size: 39px;
+
+        letter-spacing:
+          -1.4px;
+      }
+
+
+      .intro-description {
+
+        font-size: 13px;
+
+        line-height: 1.9;
+      }
+
+
+      .intro-points {
+
+        display: grid;
+
+        grid-template-columns:
+          1fr 1fr;
+
+        gap: 9px;
+
+        text-align: right;
+      }
+
+
+      .intro-point {
+
+        padding:
+          9px;
+
+        border:
+          1px solid var(--border);
+
+        border-radius: 12px;
+
+        background:
+          rgba(255,255,255,0.02);
+
+        font-size: 9px;
+      }
+
+
+      .intro-point-icon {
+
+        width: 26px;
+        height: 26px;
+
+        font-size: 11px;
+      }
+
+
+      .auth-card {
+
+        padding:
+          23px 18px;
+
+        border-radius:
+          22px;
+      }
+
+
+      .auth-card-header h2 {
+        font-size: 23px;
+      }
+
+
+      .auth-card-header p {
+        font-size: 10px;
+      }
+
+
+      .social-buttons {
+
+        grid-template-columns:
+          1fr;
+      }
+
+
+      .auth-footer {
+
+        width:
+          calc(100% - 24px);
+
+        flex-direction: column;
+
+        gap: 8px;
+
+        text-align: center;
+      }
+    }
+
+
+    /* =====================================================
+       20. SMALL MOBILE
+    ====================================================== */
+
+    @media (max-width: 380px) {
+
+      .auth-intro h1 {
+        font-size: 35px;
+      }
+
+
+      .intro-points {
+        grid-template-columns: 1fr;
+      }
+
+
+      .auth-card {
+        padding: 20px 15px;
+      }
+    }
+
+
+    /* =====================================================
+       21. ACCESSIBILITY
+    ====================================================== */
+
+    :focus-visible {
+
+      outline:
+        2px solid var(--cyan);
+
+      outline-offset:
+        3px;
+    }
+
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+
+        animation-duration:
+          0.01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          0.01ms !important;
+      }
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <div class="auth-page">
+
+
+    <!-- BACKGROUND -->
+
+    <div
+      class="background-grid"
+      aria-hidden="true"
+    ></div>
+
+    <div
+      class="orb orb-one"
+      aria-hidden="true"
+    ></div>
+
+    <div
+      class="orb orb-two"
+      aria-hidden="true"
+    ></div>
+
+
+
+    <!-- ===================================================
+         HEADER
+    ==================================================== -->
+
+    <header class="auth-header">
+
+      <a
+        href="index.html"
+        class="brand"
+        aria-label="العودة إلى الصفحة الرئيسية"
+      >
+
+        <span
+          class="brand-mark"
+          aria-hidden="true"
+        >
+          ✦
+        </span>
+
+        <span class="brand-text">
+
+          <strong>
+            AI PLS
+          </strong>
+
+          <small>
+            Personal Learning System
+          </small>
+
+        </span>
+
+      </a>
+
+
+      <a
+        href="index.html"
+        class="back-home"
+      >
+
+        <span aria-hidden="true">
+          →
+        </span>
+
+        العودة للموقع
+
+      </a>
+
+    </header>
+
+
+
+    <!-- ===================================================
+         MAIN
+    ==================================================== -->
+
+    <main class="auth-main">
+
+
+      <!-- =================================================
+           INTRO
+      ================================================== -->
+
+      <section
+        class="auth-intro"
+        aria-labelledby="intro-title"
+      >
+
+        <div class="intro-badge">
+
+          <span
+            class="intro-dot"
+            aria-hidden="true"
+          ></span>
+
+          مساحة التعلم الذكي
+
+        </div>
+
+
+        <h1 id="intro-title">
+
+          رحلتك التعليمية
+          <span class="gradient-text">
+            تبدأ من هنا.
+          </span>
+
+        </h1>
+
+
+        <p class="intro-description">
+
+          سجّل دخولك إلى AI PLS وابدأ ببناء
+          نظام تعلم شخصي يساعدك على تنظيم أهدافك،
+          فهم المحتوى، التدريب بذكاء، وقياس تقدمك.
+
+        </p>
+
+
+        <div class="intro-points">
+
+          <div class="intro-point">
+
+            <span class="intro-point-icon">
+              🎯
+            </span>
+
+            <span>
+              خطط تناسب أهدافك
+            </span>
+
+          </div>
+
+
+          <div class="intro-point">
+
+            <span class="intro-point-icon">
+              🧠
+            </span>
+
+            <span>
+              مساعدة ذكية أثناء التعلم
+            </span>
+
+          </div>
+
+
+          <div class="intro-point">
+
+            <span class="intro-point-icon">
+              📊
+            </span>
+
+            <span>
+              قياس مستمر لتقدمك
+            </span>
+
+          </div>
+
+
+          <div class="intro-point">
+
+            <span class="intro-point-icon">
+              ⚡
+            </span>
+
+            <span>
+              تجربة تعلم منظمة
+            </span>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =================================================
+           AUTH CARD
+      ================================================== -->
+
+      <section
+        class="auth-card"
+        id="auth-card"
+        aria-labelledby="auth-title"
+      >
+
+
+        <!-- CARD HEADER -->
+
+        <div class="auth-card-header">
+
+          <h2 id="auth-title">
+            أهلاً بك من جديد 👋
+          </h2>
+
+          <p id="auth-description">
+            سجّل دخولك للعودة إلى مساحة التعلم الخاصة بك.
+          </p>
+
+        </div>
+
+
+
+        <!-- TABS -->
+
+        <div
+          class="auth-tabs"
+          role="tablist"
+          aria-label="نوع الحساب"
+        >
+
+          <button
+            type="button"
+            class="auth-tab active"
+            id="login-tab"
+            role="tab"
+            aria-selected="true"
+          >
+            تسجيل الدخول
+          </button>
+
+
+          <button
+            type="button"
+            class="auth-tab"
+            id="register-tab"
+            role="tab"
+            aria-selected="false"
+          >
+            إنشاء حساب
+          </button>
+
+        </div>
+
+
+
+        <!-- FORM -->
+
+        <form
+          class="auth-form"
+          id="auth-form"
+          novalidate
+        >
+
+
+          <!-- REGISTER NAME -->
+
+          <div
+            class="register-fields"
+            id="register-fields"
+          >
+
+            <div class="form-field">
+
+              <label
+                class="form-label"
+                for="full-name"
+              >
+                الاسم الكامل
+              </label>
+
+              <input
+                class="form-input"
+                type="text"
+                id="full-name"
+                name="fullName"
+                placeholder="اكتب اسمك الكامل"
+                autocomplete="name"
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <!-- EMAIL -->
+
+          <div class="form-field">
+
+            <label
+              class="form-label"
+              for="email"
+            >
+              البريد الإلكتروني
+            </label>
+
+            <input
+              class="form-input"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="example@email.com"
+              autocomplete="email"
+              required
+            >
+
+          </div>
+
+
+
+          <!-- PASSWORD -->
+
+          <div class="form-field">
+
+            <label
+              class="form-label"
+              for="password"
+            >
+              كلمة المرور
+            </label>
+
+
+            <div class="input-wrapper">
+
+              <input
+                class="form-input password-input"
+                type="password"
+                id="password"
+                name="password"
+                placeholder="أدخل كلمة المرور"
+                autocomplete="current-password"
+                minlength="6"
+                required
+              >
+
+
+              <button
+                type="button"
+                class="password-toggle"
+                id="password-toggle"
+                aria-label="إظهار كلمة المرور"
+                aria-pressed="false"
+              >
+                👁
+              </button>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- CONFIRM PASSWORD -->
+
+          <div
+            class="register-fields"
+            id="confirm-password-field"
+          >
+
+            <div class="form-field">
+
+              <label
+                class="form-label"
+                for="confirm-password"
+              >
+                تأكيد كلمة المرور
+              </label>
+
+              <input
+                class="form-input"
+                type="password"
+                id="confirm-password"
+                name="confirmPassword"
+                placeholder="أعد كتابة كلمة المرور"
+                autocomplete="new-password"
+                minlength="6"
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <!-- LOGIN OPTIONS -->
+
+          <div class="form-options login-only">
+
+            <label class="remember">
+
+              <input
+                type="checkbox"
+                id="remember"
+                name="remember"
+              >
+
+              <span>
+                تذكرني
+              </span>
+
+            </label>
+
+
+            <a
+              href="#forgot-password"
+              class="forgot-link"
+              id="forgot-password"
+            >
+              نسيت كلمة المرور؟
+            </a>
+
+          </div>
+
+
+
+          <!-- SUBMIT -->
+
+          <button
+            type="submit"
+            class="auth-submit"
+            id="auth-submit"
+          >
+
+            <span id="submit-text">
+              تسجيل الدخول
+            </span>
+
+            <span
+              aria-hidden="true"
+              id="submit-arrow"
+            >
+              ←
+            </span>
+
+          </button>
+
+
+
+          <!-- DIVIDER -->
+
+          <div class="divider">
+            أو تابع باستخدام
+          </div>
+
+
+
+          <!-- SOCIAL -->
+
+          <div class="social-buttons">
+
+            <button
+              type="button"
+              class="social-button"
+              id="google-button"
+            >
+
+              <span class="social-icon">
+                G
+              </span>
+
+              Google
+
+            </button>
+
+
+            <button
+              type="button"
+              class="social-button"
+              id="github-button"
+            >
+
+              <span class="social-icon">
+                ◆
+              </span>
+
+              GitHub
+
+            </button>
+
+          </div>
+
+
+
+          <!-- LEGAL -->
+
+          <p class="legal-text">
+
+            بالمتابعة، أنت توافق على
+            <a href="#terms">
+              شروط الاستخدام
+            </a>
+            و
+            <a href="#privacy">
+              سياسة الخصوصية
+            </a>.
+
+          </p>
+
+
+        </form>
+
+      </section>
+
+    </main>
+
+
+
+    <!-- ===================================================
+         FOOTER
+    ==================================================== -->
+
+    <footer class="auth-footer">
+
+      <span>
+        AI PLS — Personal Learning System
+      </span>
+
+      <span>
+        © <span id="current-year"></span> AI PLS
+      </span>
+
+    </footer>
+
+  </div>
+
+
+
+  <!-- =====================================================
+       AUTH JAVASCRIPT
+  ====================================================== -->
+
+  <script>
+
+    (() => {
+
+      "use strict";
+
+
+      /* ===================================================
+         ELEMENTS
+      ==================================================== */
+
+      const authCard =
+        document.getElementById("auth-card");
+
+      const loginTab =
+        document.getElementById("login-tab");
+
+      const registerTab =
+        document.getElementById("register-tab");
+
+      const authTitle =
+        document.getElementById("auth-title");
+
+      const authDescription =
+        document.getElementById("auth-description");
+
+      const authForm =
+        document.getElementById("auth-form");
+
+      const registerFields =
+        document.querySelectorAll(".register-fields");
+
+      const fullName =
+        document.getElementById("full-name");
+
+      const email =
+        document.getElementById("email");
+
+      const password =
+        document.getElementById("password");
+
+      const confirmPassword =
+        document.getElementById("confirm-password");
+
+      const passwordToggle =
+        document.getElementById("password-toggle");
+
+      const submitButton =
+        document.getElementById("auth-submit");
+
+      const submitText =
+        document.getElementById("submit-text");
+
+      const submitArrow =
+        document.getElementById("submit-arrow");
+
+      const currentYear =
+        document.getElementById("current-year");
+
+
+      let isRegisterMode = false;
+
+
+
+      /* ===================================================
+         YEAR
+      ==================================================== */
+
+      if (currentYear) {
+
+        currentYear.textContent =
+          new Date().getFullYear();
+
+      }
+
+
+
+      /* ===================================================
+         AUTH MODE
+      ==================================================== */
+
+      function setAuthMode(registerMode) {
+
+        isRegisterMode =
+          registerMode;
+
+        authCard.classList.toggle(
+          "register-mode",
+          isRegisterMode
+        );
+
+
+        loginTab.classList.toggle(
+          "active",
+          !isRegisterMode
+        );
+
+
+        registerTab.classList.toggle(
+          "active",
+          isRegisterMode
+        );
+
+
+        loginTab.setAttribute(
+          "aria-selected",
+          String(!isRegisterMode)
+        );
+
+
+        registerTab.setAttribute(
+          "aria-selected",
+          String(isRegisterMode)
+        );
+
+
+        if (isRegisterMode) {
+
+          authTitle.textContent =
+            "أنشئ حسابك في AI PLS ✨";
+
+          authDescription.textContent =
+            "ابدأ ببناء رحلة تعلم شخصية تناسب أهدافك.";
+
+          submitText.textContent =
+            "إنشاء الحساب";
+
+          submitArrow.textContent =
+            "←";
+
+          password.setAttribute(
+            "autocomplete",
+            "new-password"
+          );
+
+        } else {
+
+          authTitle.textContent =
+            "أهلاً بك من جديد 👋";
+
+          authDescription.textContent =
+            "سجّل دخولك للعودة إلى مساحة التعلم الخاصة بك.";
+
+          submitText.textContent =
+            "تسجيل الدخول";
+
+          submitArrow.textContent =
+            "←";
+
+          password.setAttribute(
+            "autocomplete",
+            "current-password"
+          );
+        }
+
+
+        clearValidation();
+      }
+
+
+
+      /* ===================================================
+         TAB EVENTS
+      ==================================================== */
+
+      loginTab.addEventListener(
+        "click",
+        () => setAuthMode(false)
+      );
+
+
+      registerTab.addEventListener(
+        "click",
+        () => setAuthMode(true)
+      );
+
+
+
+      /* ===================================================
+         PASSWORD VISIBILITY
+      ==================================================== */
+
+      passwordToggle.addEventListener(
+        "click",
+        () => {
+
+          const isHidden =
+            password.type === "password";
+
+
+          password.type =
+            isHidden
+              ? "text"
+              : "password";
+
+
+          passwordToggle.textContent =
+            isHidden
+              ? "🙈"
+              : "👁";
+
+
+          passwordToggle.setAttribute(
+            "aria-label",
+            isHidden
+              ? "إخفاء كلمة المرور"
+              : "إظهار كلمة المرور"
+          );
+
+
+          passwordToggle.setAttribute(
+            "aria-pressed",
+            String(isHidden)
+          );
+
+        }
+      );
+
+
+
+      /* ===================================================
+         VALIDATION
+      ==================================================== */
+
+      function clearValidation() {
+
+        [
+          fullName,
+          email,
+          password,
+          confirmPassword
+        ].forEach(field => {
+
+          if (!field) return;
+
+          field.style.borderColor = "";
+
+        });
+
+      }
+
+
+      function markInvalid(field) {
+
+        if (!field) return;
+
+        field.style.borderColor =
+          "rgba(239,68,68,0.75)";
+
+        field.focus();
+      }
+
+
+      function validateForm() {
+
+        clearValidation();
+
+
+        const emailValue =
+          email.value.trim();
+
+        const passwordValue =
+          password.value;
+
+
+        if (isRegisterMode) {
+
+          if (
+            fullName.value.trim().length < 2
+          ) {
+
+            markInvalid(fullName);
+
+            return false;
+          }
+
+        }
+
+
+        if (
+          !emailValue ||
+          !emailValue.includes("@")
+        ) {
+
+          markInvalid(email);
+
+          return false;
+        }
+
+
+        if (
+          passwordValue.length < 6
+        ) {
+
+          markInvalid(password);
+
+          return false;
+        }
+
+
+        if (
+          isRegisterMode &&
+          passwordValue !==
+          confirmPassword.value
+        ) {
+
+          markInvalid(confirmPassword);
+
+          return false;
+        }
+
+
+        return true;
+      }
+
+
+
+      /* ===================================================
+         FORM SUBMIT
+         FRONTEND DEMO ONLY
+      ==================================================== */
+
+      authForm.addEventListener(
+        "submit",
+        event => {
+
+          event.preventDefault();
+
+
+          if (!validateForm()) {
+            return;
+          }
+
+
+          submitButton.disabled = true;
+
+
+          const originalText =
+            submitText.textContent;
+
+
+          submitText.textContent =
+            isRegisterMode
+              ? "جاري إنشاء الحساب..."
+              : "جاري تسجيل الدخول...";
+
+
+          submitArrow.textContent =
+            "•••";
+
+
+          setTimeout(() => {
+
+            submitButton.disabled = false;
+
+            submitText.textContent =
+              originalText;
+
+            submitArrow.textContent =
+              "←";
+
+
+            alert(
+              isRegisterMode
+                ? "واجهة التسجيل جاهزة. الخطوة القادمة هي ربط الحساب بنظام المصادقة الحقيقي."
+                : "واجهة تسجيل الدخول جاهزة. الخطوة القادمة هي ربطها بنظام المصادقة الحقيقي."
+            );
+
+          }, 900);
+
+        }
+      );
+
+
+
+      /* ===================================================
+         SOCIAL DEMO
+      ==================================================== */
+
+      document
+        .getElementById("google-button")
+        .addEventListener(
+          "click",
+          () => {
+
+            alert(
+              "تسجيل Google سيتم ربطه لاحقاً بنظام المصادقة الحقيقي."
+            );
+
+          }
+        );
+
+
+      document
+        .getElementById("github-button")
+        .addEventListener(
+          "click",
+          () => {
+
+            alert(
+              "تسجيل GitHub سيتم ربطه لاحقاً بنظام المصادقة الحقيقي."
+            );
+
+          }
+        );
+
+
+
+      /* ===================================================
+         FORGOT PASSWORD
+      ==================================================== */
+
+      document
+        .getElementById("forgot-password")
+        .addEventListener(
+          "click",
+          event => {
+
+            event.preventDefault();
+
+            alert(
+              "استعادة كلمة المرور سيتم تطويرها مع نظام المصادقة الحقيقي."
+            );
+
+          }
+        );
+
+
+    })();
+
+  </script>
+
+</body>
+
+  </html>
