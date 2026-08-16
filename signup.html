@@ -1,1 +1,976 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
+<head>
+
+  <!-- =====================================================
+       AI PLS — AUTHENTICATION
+       Sign Up Page
+  ====================================================== -->
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="إنشاء حساب جديد في AI PLS — نظام التعلم الشخصي بالذكاء الاصطناعي."
+  >
+
+  <meta
+    name="theme-color"
+    content="#070b17"
+  >
+
+  <title>AI PLS — إنشاء حساب</title>
+
+
+  <!-- =====================================================
+       FONTS
+  ====================================================== -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- =====================================================
+       GLOBAL DESIGN
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="css/global.css"
+  >
+
+
+  <!-- =====================================================
+       AUTH DESIGN
+  ====================================================== -->
+
+  <link
+    rel="stylesheet"
+    href="css/auth.css"
+  >
+
+</head>
+
+
+<body class="auth-page">
+
+
+  <!-- =====================================================
+       BACKGROUND SYSTEM
+  ====================================================== -->
+
+  <div
+    class="auth-background"
+    aria-hidden="true"
+  >
+
+    <div class="auth-orb auth-orb-one"></div>
+
+    <div class="auth-orb auth-orb-two"></div>
+
+    <div class="auth-grid"></div>
+
+  </div>
+
+
+  <!-- =====================================================
+       HEADER
+  ====================================================== -->
+
+  <header class="auth-header">
+
+    <a
+      href="index.html"
+      class="auth-brand"
+      aria-label="AI PLS الرئيسية"
+    >
+
+      <span
+        class="auth-brand-mark"
+        aria-hidden="true"
+      >
+        AI
+      </span>
+
+      <span>
+        AI PLS
+      </span>
+
+    </a>
+
+
+    <a
+      href="index.html"
+      class="auth-back"
+    >
+      ← العودة للرئيسية
+    </a>
+
+  </header>
+
+
+  <!-- =====================================================
+       MAIN AUTH AREA
+  ====================================================== -->
+
+  <main class="auth-main">
+
+    <div class="auth-container">
+
+
+      <!-- =================================================
+           INTRODUCTION
+      ================================================== -->
+
+      <section class="auth-intro">
+
+        <span class="auth-eyebrow">
+          ابدأ رحلتك التعليمية
+        </span>
+
+
+        <h1>
+
+          ابنِ مستقبلك
+          <span class="gradient-text">
+            بذكاء.
+          </span>
+
+        </h1>
+
+
+        <p>
+
+          أنشئ حسابك في AI PLS وابدأ في بناء تجربة
+          تعليمية شخصية تعتمد على الذكاء الاصطناعي،
+          وتنظيم الوقت، والتحليل المستمر لتقدمك.
+
+        </p>
+
+
+        <!-- =============================================
+             BENEFITS
+        ============================================== -->
+
+        <div class="auth-benefits">
+
+
+          <div class="auth-benefit">
+
+            <div
+              class="auth-benefit-icon"
+              aria-hidden="true"
+            >
+              ✦
+            </div>
+
+            <div>
+
+              <strong>
+                تعلم شخصي بالذكاء الاصطناعي
+              </strong>
+
+              <span>
+                تجربة تعليمية تتكيف مع احتياجاتك.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="auth-benefit">
+
+            <div
+              class="auth-benefit-icon"
+              aria-hidden="true"
+            >
+              ◈
+            </div>
+
+            <div>
+
+              <strong>
+                خطط دراسية ذكية
+              </strong>
+
+              <span>
+                نظم وقتك وحوّل أهدافك إلى خطوات واضحة.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="auth-benefit">
+
+            <div
+              class="auth-benefit-icon"
+              aria-hidden="true"
+            >
+              ↗
+            </div>
+
+            <div>
+
+              <strong>
+                تتبع تقدمك
+              </strong>
+
+              <span>
+                اعرف أين أنت وإلى أين تتجه.
+              </span>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- =================================================
+           SIGN UP CARD
+      ================================================== -->
+
+      <section class="auth-card">
+
+
+        <!-- =============================================
+             CARD HEADER
+        ============================================== -->
+
+        <div class="auth-card-header">
+
+          <div
+            class="auth-card-icon"
+            aria-hidden="true"
+          >
+            ✦
+          </div>
+
+          <div>
+
+            <h2>
+              إنشاء حساب جديد
+            </h2>
+
+            <p>
+              ابدأ رحلتك مع AI PLS
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- =============================================
+             FORM
+        ============================================== -->
+
+        <form
+          class="auth-form"
+          id="signupForm"
+          novalidate
+        >
+
+
+          <!-- ===========================================
+               NAME
+          ============================================ -->
+
+          <div class="form-group">
+
+            <label for="signupName">
+              الاسم
+            </label>
+
+            <div class="input-wrapper">
+
+              <span
+                class="input-icon"
+                aria-hidden="true"
+              >
+                ◉
+              </span>
+
+              <input
+                type="text"
+                id="signupName"
+                name="name"
+                placeholder="اكتب اسمك"
+                autocomplete="name"
+                required
+              >
+
+            </div>
+
+            <div
+              class="form-error"
+              id="nameError"
+              aria-live="polite"
+            ></div>
+
+          </div>
+
+
+          <!-- ===========================================
+               EMAIL
+          ============================================ -->
+
+          <div class="form-group">
+
+            <label for="signupEmail">
+              البريد الإلكتروني
+            </label>
+
+            <div class="input-wrapper">
+
+              <span
+                class="input-icon"
+                aria-hidden="true"
+              >
+                @
+              </span>
+
+              <input
+                type="email"
+                id="signupEmail"
+                name="email"
+                placeholder="example@email.com"
+                autocomplete="email"
+                dir="ltr"
+                required
+              >
+
+            </div>
+
+            <div
+              class="form-error"
+              id="emailError"
+              aria-live="polite"
+            ></div>
+
+          </div>
+
+
+          <!-- ===========================================
+               PASSWORD
+          ============================================ -->
+
+          <div class="form-group">
+
+            <div class="form-label-row">
+
+              <label for="signupPassword">
+                كلمة المرور
+              </label>
+
+            </div>
+
+
+            <div class="input-wrapper">
+
+              <span
+                class="input-icon"
+                aria-hidden="true"
+              >
+                ●
+              </span>
+
+
+              <input
+                type="password"
+                id="signupPassword"
+                name="password"
+                placeholder="أنشئ كلمة مرور قوية"
+                autocomplete="new-password"
+                dir="ltr"
+                minlength="8"
+                required
+              >
+
+
+              <button
+                type="button"
+                class="password-toggle"
+                id="passwordToggle"
+                aria-label="إظهار كلمة المرور"
+              >
+                إظهار
+              </button>
+
+            </div>
+
+
+            <div
+              class="form-error"
+              id="passwordError"
+              aria-live="polite"
+            ></div>
+
+          </div>
+
+
+          <!-- ===========================================
+               CONFIRM PASSWORD
+          ============================================ -->
+
+          <div class="form-group">
+
+            <label for="signupConfirmPassword">
+              تأكيد كلمة المرور
+            </label>
+
+
+            <div class="input-wrapper">
+
+              <span
+                class="input-icon"
+                aria-hidden="true"
+              >
+                ✓
+              </span>
+
+
+              <input
+                type="password"
+                id="signupConfirmPassword"
+                name="confirmPassword"
+                placeholder="أعد كتابة كلمة المرور"
+                autocomplete="new-password"
+                dir="ltr"
+                minlength="8"
+                required
+              >
+
+
+              <button
+                type="button"
+                class="password-toggle"
+                id="confirmPasswordToggle"
+                aria-label="إظهار تأكيد كلمة المرور"
+              >
+                إظهار
+              </button>
+
+            </div>
+
+
+            <div
+              class="form-error"
+              id="confirmPasswordError"
+              aria-live="polite"
+            ></div>
+
+          </div>
+
+
+          <!-- ===========================================
+               TERMS
+          ============================================ -->
+
+          <label class="remember-option">
+
+            <input
+              type="checkbox"
+              id="terms"
+              name="terms"
+              required
+            >
+
+            <span class="custom-checkbox"></span>
+
+            <span>
+              أوافق على شروط الاستخدام وسياسة الخصوصية.
+            </span>
+
+          </label>
+
+
+          <div
+            class="form-error"
+            id="termsError"
+            aria-live="polite"
+          ></div>
+
+
+          <!-- ===========================================
+               STATUS
+          ============================================ -->
+
+          <div
+            class="auth-status"
+            id="signupStatus"
+            aria-live="polite"
+          ></div>
+
+
+          <!-- ===========================================
+               SUBMIT
+          ============================================ -->
+
+          <button
+            type="submit"
+            class="auth-submit"
+            id="signupSubmit"
+          >
+
+            <span
+              class="submit-loader"
+              aria-hidden="true"
+            ></span>
+
+            <span class="submit-text">
+              إنشاء الحساب
+            </span>
+
+            <span
+              class="submit-arrow"
+              aria-hidden="true"
+            >
+              ←
+            </span>
+
+          </button>
+
+
+        </form>
+
+
+        <!-- =============================================
+             DIVIDER
+        ============================================== -->
+
+        <div class="auth-divider">
+
+          <span></span>
+
+          <small>
+            أو
+          </small>
+
+          <span></span>
+
+        </div>
+
+
+        <!-- =============================================
+             DEMO / SOCIAL
+        ============================================== -->
+
+        <button
+          type="button"
+          class="social-login"
+          id="demoSignup"
+        >
+
+          <span
+            class="social-icon"
+            aria-hidden="true"
+          >
+            AI
+          </span>
+
+          <span>
+            تجربة AI PLS بحساب تجريبي
+          </span>
+
+        </button>
+
+
+        <!-- =============================================
+             SWITCH LOGIN
+        ============================================== -->
+
+        <p class="auth-switch">
+
+          لديك حساب بالفعل؟
+
+          <a href="login.html">
+            تسجيل الدخول
+          </a>
+
+        </p>
+
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+
+  <footer class="auth-footer">
+
+    <span>
+      © 2026 AI PLS
+    </span>
+
+    <span>
+      Personal Learning System
+    </span>
+
+  </footer>
+
+
+  <!-- =====================================================
+       SIGN UP INTERACTIONS
+  ====================================================== -->
+
+  <script>
+
+    const signupForm =
+      document.getElementById("signupForm");
+
+    const signupName =
+      document.getElementById("signupName");
+
+    const signupEmail =
+      document.getElementById("signupEmail");
+
+    const signupPassword =
+      document.getElementById("signupPassword");
+
+    const signupConfirmPassword =
+      document.getElementById("signupConfirmPassword");
+
+    const terms =
+      document.getElementById("terms");
+
+    const signupSubmit =
+      document.getElementById("signupSubmit");
+
+    const signupStatus =
+      document.getElementById("signupStatus");
+
+
+    /* =================================================
+       PASSWORD TOGGLE
+    ================================================= */
+
+    function setupPasswordToggle(
+      buttonId,
+      inputId
+    ) {
+
+      const button =
+        document.getElementById(buttonId);
+
+      const input =
+        document.getElementById(inputId);
+
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          const isPassword =
+            input.type === "password";
+
+
+          input.type =
+            isPassword
+              ? "text"
+              : "password";
+
+
+          button.textContent =
+            isPassword
+              ? "إخفاء"
+              : "إظهار";
+
+
+          button.setAttribute(
+            "aria-label",
+            isPassword
+              ? "إخفاء كلمة المرور"
+              : "إظهار كلمة المرور"
+          );
+
+        }
+      );
+
+    }
+
+
+    setupPasswordToggle(
+      "passwordToggle",
+      "signupPassword"
+    );
+
+
+    setupPasswordToggle(
+      "confirmPasswordToggle",
+      "signupConfirmPassword"
+    );
+
+
+    /* =================================================
+       ERROR HELPERS
+    ================================================= */
+
+    function setError(
+      id,
+      message
+    ) {
+
+      const element =
+        document.getElementById(id);
+
+      element.textContent =
+        message;
+
+    }
+
+
+    function clearErrors() {
+
+      setError(
+        "nameError",
+        ""
+      );
+
+      setError(
+        "emailError",
+        ""
+      );
+
+      setError(
+        "passwordError",
+        ""
+      );
+
+      setError(
+        "confirmPasswordError",
+        ""
+      );
+
+      setError(
+        "termsError",
+        ""
+      );
+
+      signupStatus.textContent =
+        "";
+
+      signupStatus.className =
+        "auth-status";
+
+    }
+
+
+    /* =================================================
+       EMAIL VALIDATION
+    ================================================= */
+
+    function isValidEmail(email) {
+
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        .test(email);
+
+    }
+
+
+    /* =================================================
+       FORM SUBMIT
+    ================================================= */
+
+    signupForm.addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+        clearErrors();
+
+
+        const name =
+          signupName.value.trim();
+
+        const email =
+          signupEmail.value.trim();
+
+        const password =
+          signupPassword.value;
+
+        const confirmPassword =
+          signupConfirmPassword.value;
+
+
+        let valid = true;
+
+
+        /* NAME */
+
+        if (name.length < 2) {
+
+          setError(
+            "nameError",
+            "اكتب اسمًا صحيحًا."
+          );
+
+          valid = false;
+
+        }
+
+
+        /* EMAIL */
+
+        if (!isValidEmail(email)) {
+
+          setError(
+            "emailError",
+            "اكتب بريدًا إلكترونيًا صحيحًا."
+          );
+
+          valid = false;
+
+        }
+
+
+        /* PASSWORD */
+
+        if (password.length < 8) {
+
+          setError(
+            "passwordError",
+            "كلمة المرور يجب أن تحتوي على 8 أحرف على الأقل."
+          );
+
+          valid = false;
+
+        }
+
+
+        /* CONFIRM PASSWORD */
+
+        if (
+          confirmPassword !== password
+        ) {
+
+          setError(
+            "confirmPasswordError",
+            "كلمتا المرور غير متطابقتين."
+          );
+
+          valid = false;
+
+        }
+
+
+        /* TERMS */
+
+        if (!terms.checked) {
+
+          setError(
+            "termsError",
+            "يجب الموافقة على الشروط للمتابعة."
+          );
+
+          valid = false;
+
+        }
+
+
+        if (!valid) {
+
+          return;
+
+        }
+
+
+        /* =============================================
+           DEMO SUBMIT
+        ============================================== */
+
+        signupSubmit.classList.add(
+          "is-loading"
+        );
+
+
+        setTimeout(
+          () => {
+
+            signupSubmit.classList.remove(
+              "is-loading"
+            );
+
+
+            signupStatus.textContent =
+              "تم التحقق من البيانات بنجاح. سيتم ربط التسجيل الحقيقي في المرحلة القادمة.";
+
+            signupStatus.className =
+              "auth-status success";
+
+          },
+          900
+        );
+
+      }
+    );
+
+
+    /* =================================================
+       DEMO ACCOUNT
+    ================================================= */
+
+    document
+      .getElementById("demoSignup")
+      .addEventListener(
+        "click",
+        () => {
+
+          signupName.value =
+            "طالب AI PLS";
+
+          signupEmail.value =
+            "demo@aipls.local";
+
+          signupPassword.value =
+            "AI-PLS-Demo-2026";
+
+          signupConfirmPassword.value =
+            "AI-PLS-Demo-2026";
+
+          terms.checked =
+            true;
+
+          signupStatus.textContent =
+            "تم تجهيز الحساب التجريبي. اضغط «إنشاء الحساب» للمتابعة.";
+
+          signupStatus.className =
+            "auth-status success";
+
+        }
+      );
+
+  </script>
+
+
+</body>
+
+                </html>
