@@ -902,37 +902,56 @@
 
         }
 
+/* =============================================
+   CREATE ACCOUNT
+============================================= */
 
-        /* =============================================
-           DEMO SUBMIT
-        ============================================== */
-
-        signupSubmit.classList.add(
-          "is-loading"
-        );
+signupSubmit.classList.add("is-loading");
+signupSubmit.disabled = true;
 
 
-        setTimeout(
-          () => {
+/* حفظ بيانات المستخدم */
 
-            signupSubmit.classList.remove(
-              "is-loading"
-            );
+localStorage.setItem(
+  "aipls_user_name",
+  name
+);
+
+localStorage.setItem(
+  "aipls_user_email",
+  email
+);
+
+localStorage.setItem(
+  "aipls_user_password",
+  password
+);
+
+localStorage.setItem(
+  "aipls_logged_in",
+  "true"
+);
 
 
-            signupStatus.textContent =
-              "تم التحقق من البيانات بنجاح. سيتم ربط التسجيل الحقيقي في المرحلة القادمة.";
+/* رسالة نجاح */
 
-            signupStatus.className =
-              "auth-status success";
+signupStatus.textContent =
+  "تم إنشاء حسابك بنجاح. جاري فتح مساحة التعلم...";
 
-          },
-          900
-        );
+signupStatus.className =
+  "auth-status success";
 
-      }
-    );
 
+/* الانتقال إلى الواجهة */
+
+setTimeout(() => {
+
+  window.location.href =
+    "dashboard.html";
+
+}, 700);
+        
+      
 
     /* =================================================
        DEMO ACCOUNT
