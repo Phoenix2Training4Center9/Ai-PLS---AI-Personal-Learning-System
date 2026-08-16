@@ -3755,3 +3755,272 @@ a {
     transparent;
 
    }
+/* =====================================================
+   AI PLS — LOGIN ACCESS
+===================================================== */
+
+.login-access {
+
+  width: min(920px, calc(100% - 40px));
+
+  margin: 70px auto;
+
+  padding: 70px 30px;
+
+  text-align: center;
+
+  border: 1px solid rgba(148, 163, 184, 0.16);
+
+  border-radius: 28px;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(99, 102, 241, 0.12),
+      transparent 45%
+    ),
+    rgba(10, 15, 29, 0.72);
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.28);
+
+  backdrop-filter: blur(20px);
+
+  -webkit-backdrop-filter: blur(20px);
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+
+.login-access::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 15%;
+
+  right: 15%;
+
+  height: 1px;
+
+  background: var(--gradient);
+
+  opacity: 0.8;
+}
+
+
+.login-access-icon {
+
+  width: 64px;
+
+  height: 64px;
+
+  margin: 0 auto 22px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(99, 102, 241, 0.16),
+      rgba(34, 211, 238, 0.12)
+    );
+
+  border:
+    1px solid rgba(99, 102, 241, 0.18);
+
+  font-size: 29px;
+
+  box-shadow:
+    0 15px 40px rgba(99, 102, 241, 0.14);
+}
+
+
+.login-access h2 {
+
+  margin: 0 0 14px;
+
+  font-size: clamp(27px, 4vw, 38px);
+
+  font-weight: 800;
+
+  letter-spacing: -1px;
+}
+
+
+.login-access h2 span {
+
+  background:
+    var(--gradient);
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  color: transparent;
+}
+
+
+.login-access p {
+
+  max-width: 600px;
+
+  margin: 0 auto 30px;
+
+  color: var(--muted);
+
+  font-size: 14px;
+
+  line-height: 2;
+}
+
+
+.login-access-button {
+
+  width: min(360px, 100%);
+
+  min-height: 56px;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  border-radius: 15px;
+
+  color: white;
+
+  background:
+    var(--gradient);
+
+  box-shadow:
+    0 15px 40px rgba(99, 102, 241, 0.25);
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+
+.login-access-button:hover {
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 20px 50px rgba(99, 102, 241, 0.35);
+
+  filter: brightness(1.06);
+}
+
+
+.login-access-button:active {
+
+  transform: translateY(-1px);
+}
+
+
+.login-access-arrow {
+
+  font-size: 18px;
+
+  transition:
+    transform 0.25s ease;
+}
+
+
+.login-access-button:hover
+.login-access-arrow {
+
+  transform: translateX(-5px);
+}
+
+
+.login-access-signup {
+
+  margin-top: 20px;
+
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+
+.login-access-signup a {
+
+  margin-right: 5px;
+
+  color: var(--cyan);
+
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+
+.login-access-signup a:hover {
+
+  opacity: 0.75;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+  .login-access {
+
+    width: calc(100% - 24px);
+
+    margin: 50px auto;
+
+    padding: 50px 20px;
+
+    border-radius: 23px;
+  }
+
+
+  .login-access h2 {
+
+    font-size: 27px;
+  }
+
+
+  .login-access p {
+
+    font-size: 12px;
+
+    line-height: 1.9;
+  }
+
+
+  .login-access-button {
+
+    min-height: 53px;
+
+    font-size: 13px;
+  }
+
+}
