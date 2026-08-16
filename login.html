@@ -673,101 +673,278 @@
 
       }
 
+<script>
 
-      /* -----------------------------------------------
-         DEMO FORM HANDLER
-         مؤقت حتى نربطه بالـ Backend
-      ----------------------------------------------- */
+document.addEventListener("DOMContentLoaded", () => {
 
-      const form =
-        document.getElementById("login-form");
+  /* ===============================================
+     CURRENT YEAR
+  =============================================== */
 
-      if (form) {
+  const yearElement =
+    document.getElementById("current-year");
 
-        form.addEventListener("submit", (event) => {
-
-          event.preventDefault();
-
-
-          const email =
-            emailInput
-              ? emailInput.value.trim()
-              : "";
-
-          const password =
-            passwordInput
-              ? passwordInput.value
-              : "";
+  if (yearElement) {
+    yearElement.textContent =
+      new Date().getFullYear();
+  }
 
 
-          if (status) {
+  /* ===============================================
+     PASSWORD VISIBILITY
+  =============================================== */
 
-            status.className =
-              "auth-status";
+  const passwordButtons =
+    document.querySelectorAll(
+      "[data-password-toggle]"
+    );
 
-            status.textContent =
-              "";
+  passwordButtons.forEach((button) => {
 
-          }
+    button.addEventListener("click", () => {
 
+      const targetId =
+        button.getAttribute(
+          "data-password-toggle"
+        );
 
-          if (!email) {
+      const input =
+        document.getElementById(targetId);
 
-            if (status) {
+      if (!input) return;
 
-              status.className =
-                "auth-status error";
+      const isPassword =
+        input.type === "password";
 
-              status.textContent =
-                "من فضلك أدخل البريد الإلكتروني.";
+      input.type =
+        isPassword
+          ? "text"
+          : "password";
 
-            }
+      button.textContent =
+        isPassword
+          ? "إخفاء"
+          : "إظهار";
 
-            if (emailInput) {
-              emailInput.focus();
-            }
+      button.setAttribute(
+        "aria-label",
+        isPassword
+          ? "إخفاء كلمة المرور"
+          : "إظهار كلمة المرور"
+      );
 
-            return;
+    });
 
-          }
-
-
-          if (!password) {
-
-            if (status) {
-
-              status.className =
-                "auth-status error";
-
-              status.textContent =
-                "من فضلك أدخل كلمة المرور.";
-
-            }
-
-            if (passwordInput) {
-              passwordInput.focus();
-            }
-
-            return;
-
-          }
+  });
 
 
-          if (status) {
+  /* ===============================================
+     ELEMENTS
+  =============================================== */
 
-            status.className =
-              "auth-status success";
+  const form =
+    document.getElementById("login-form");
 
-            status.textContent =
-              "واجهة تسجيل الدخول جاهزة. الربط الحقيقي بالحسابات سيكون في مرحلة الـ Backend.";
+  const emailInput =
+    document.getElementById("login-email");
 
-          }
+  const passwordInput =
+    document.getElementById("login-password");
 
-        });
+  const status =
+    document.getElementById("login-status");
+
+  const submitButton =
+    document.getElementById("login-submit");
+
+
+  /* ===============================================
+     DEMO LOGIN
+  =============================================== */
+
+  const demoButton =
+    document.getElementById("demo-login");
+
+  if (demoButton) {
+
+    demoButton.addEventListener("click", () => {
+
+      if (emailInput) {
+        emailInput.value =
+          "demo@aipls.app";
+      }
+
+      if (passwordInput) {
+        passwordInput.value =
+          "AI-PLS-DEMO";
+      }
+
+      if (status) {
+
+        status.className =
+          "auth-status success";
+
+        status.textContent =
+          "تم تجهيز الحساب التجريبي. اضغط «تسجيل الدخول» للمتابعة.";
 
       }
 
     });
+
+  }
+
+
+  /* ===============================================
+     LOGIN
+  =============================================== */
+
+  if (form) {
+
+    form.addEventListener("submit", (event) => {
+
+      event.preventDefault();
+
+
+      const email =
+        emailInput
+          ? emailInput.value.trim()
+          : "";
+
+      const password =
+        passwordInput
+          ? passwordInput.value
+          : "";
+
+
+      /* -------------------------------------------
+         RESET STATUS
+      ------------------------------------------- */
+
+      if (status) {
+
+        status.className =
+          "auth-status";
+
+        status.textContent =
+          "";
+
+      }
+
+
+      /* -------------------------------------------
+         EMAIL VALIDATION
+      ------------------------------------------- */
+
+      if (!email) {
+
+        if (status) {
+
+          status.className =
+            "auth-status error";
+
+          status.textContent =
+            "من فضلك أدخل البريد الإلكتروني.";
+
+        }
+
+        if (emailInput) {
+          emailInput.focus();
+        }
+
+        return;
+
+      }
+
+
+      /* -------------------------------------------
+         PASSWORD VALIDATION
+      ------------------------------------------- */
+
+      if (!password) {
+
+        if (status) {
+
+          status.className =
+            "auth-status error";
+
+          status.textContent =
+            "من فضلك أدخل كلمة المرور.";
+
+        }
+
+        if (passwordInput) {
+          passwordInput.focus();
+        }
+
+        return;
+
+      }
+
+
+      /* -------------------------------------------
+         LOADING STATE
+      ------------------------------------------- */
+
+      if (submitButton) {
+
+        submitButton.classList.add(
+          "is-loading"
+        );
+
+        submitButton.disabled = true;
+
+      }
+
+
+      /* -------------------------------------------
+         SAVE LOGIN STATE
+         مؤقتاً إلى حين بناء Backend
+      ------------------------------------------- */
+
+      localStorage.setItem(
+        "aipls_logged_in",
+        "true"
+      );
+
+      localStorage.setItem(
+        "aipls_user_email",
+        email
+      );
+
+
+      /* -------------------------------------------
+         SUCCESS
+      ------------------------------------------- */
+
+      if (status) {
+
+        status.className =
+          "auth-status success";
+
+        status.textContent =
+          "تم تسجيل الدخول بنجاح. جاري فتح مساحة التعلم...";
+
+      }
+
+
+      /* -------------------------------------------
+         GO TO DASHBOARD
+      ------------------------------------------- */
+
+      setTimeout(() => {
+
+        window.location.href =
+          "dashboard.html";
+
+      }, 700);
+
+    });
+
+  }
+
+});
+
+</script>
 
   </script>
 
