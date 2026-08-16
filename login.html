@@ -554,127 +554,6 @@
 
   <script>
 
-    document.addEventListener("DOMContentLoaded", () => {
-
-      /* -----------------------------------------------
-         CURRENT YEAR
-      ----------------------------------------------- */
-
-      const yearElement =
-        document.getElementById("current-year");
-
-      if (yearElement) {
-        yearElement.textContent =
-          new Date().getFullYear();
-      }
-
-
-      /* -----------------------------------------------
-         PASSWORD VISIBILITY
-      ----------------------------------------------- */
-
-      const passwordButtons =
-        document.querySelectorAll(
-          "[data-password-toggle]"
-        );
-
-
-      passwordButtons.forEach((button) => {
-
-        button.addEventListener("click", () => {
-
-          const targetId =
-            button.getAttribute(
-              "data-password-toggle"
-            );
-
-          const input =
-            document.getElementById(targetId);
-
-          if (!input) return;
-
-
-          const isPassword =
-            input.type === "password";
-
-
-          input.type =
-            isPassword
-              ? "text"
-              : "password";
-
-
-          button.textContent =
-            isPassword
-              ? "إخفاء"
-              : "إظهار";
-
-
-          button.setAttribute(
-            "aria-label",
-            isPassword
-              ? "إخفاء كلمة المرور"
-              : "إظهار كلمة المرور"
-          );
-
-        });
-
-      });
-
-
-      /* -----------------------------------------------
-         DEMO LOGIN
-      ----------------------------------------------- */
-
-      const demoButton =
-        document.getElementById("demo-login");
-
-      const emailInput =
-        document.getElementById("login-email");
-
-      const passwordInput =
-        document.getElementById("login-password");
-
-      const status =
-        document.getElementById("login-status");
-
-
-      if (demoButton) {
-
-        demoButton.addEventListener("click", () => {
-
-          if (emailInput) {
-
-            emailInput.value =
-              "demo@aipls.app";
-
-          }
-
-
-          if (passwordInput) {
-
-            passwordInput.value =
-              "AI-PLS-DEMO";
-
-          }
-
-
-          if (status) {
-
-            status.className =
-              "auth-status success";
-
-            status.textContent =
-              "تم تجهيز الحساب التجريبي. اضغط «تسجيل الدخول» للمتابعة.";
-
-          }
-
-        });
-
-      }
-
-<script>
-
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ===============================================
@@ -739,7 +618,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* ===============================================
-     ELEMENTS
+     LOGIN ELEMENTS
   =============================================== */
 
   const form =
@@ -757,13 +636,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitButton =
     document.getElementById("login-submit");
 
+  const demoButton =
+    document.getElementById("demo-login");
+
 
   /* ===============================================
      DEMO LOGIN
   =============================================== */
-
-  const demoButton =
-    document.getElementById("demo-login");
 
   if (demoButton) {
 
@@ -857,6 +736,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
       /* -------------------------------------------
+         EMAIL FORMAT
+      ------------------------------------------- */
+
+      const emailPattern =
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!emailPattern.test(email)) {
+
+        if (status) {
+
+          status.className =
+            "auth-status error";
+
+          status.textContent =
+            "من فضلك أدخل بريداً إلكترونياً صحيحاً.";
+
+        }
+
+        if (emailInput) {
+          emailInput.focus();
+        }
+
+        return;
+
+      }
+
+
+      /* -------------------------------------------
          PASSWORD VALIDATION
       ------------------------------------------- */
 
@@ -881,9 +788,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
 
-      /* -------------------------------------------
-         LOADING STATE
-      ------------------------------------------- */
+      /* ===========================================
+         LOADING
+      =========================================== */
 
       if (submitButton) {
 
@@ -891,15 +798,16 @@ document.addEventListener("DOMContentLoaded", () => {
           "is-loading"
         );
 
-        submitButton.disabled = true;
+        submitButton.disabled =
+          true;
 
       }
 
 
-      /* -------------------------------------------
+      /* ===========================================
          SAVE LOGIN STATE
-         مؤقتاً إلى حين بناء Backend
-      ------------------------------------------- */
+         مؤقتاً — Front-End
+      =========================================== */
 
       localStorage.setItem(
         "aipls_logged_in",
@@ -912,9 +820,9 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
 
-      /* -------------------------------------------
-         SUCCESS
-      ------------------------------------------- */
+      /* ===========================================
+         SUCCESS MESSAGE
+      =========================================== */
 
       if (status) {
 
@@ -927,9 +835,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
 
-      /* -------------------------------------------
-         GO TO DASHBOARD
-      ------------------------------------------- */
+      /* ===========================================
+         OPEN DASHBOARD
+      =========================================== */
 
       setTimeout(() => {
 
@@ -945,6 +853,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 </script>
+
+
+</body>
+
+</html>
 
   </script>
 
