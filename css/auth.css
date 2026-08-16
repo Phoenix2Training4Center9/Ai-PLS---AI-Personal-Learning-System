@@ -1878,7 +1878,6 @@ input:focus-visible {
 
 }
 
-
 /* =========================================================
    23. REDUCED MOTION
    ========================================================= */
@@ -1890,5 +1889,19 @@ input:focus-visible {
   .auth-intro,
   .auth-card {
 
-    animation:
-    
+    animation: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+  }
+}
