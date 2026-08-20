@@ -1,1 +1,1509 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#070b17"
+  >
+
+  <meta
+    name="description"
+    content="AI PLS — لوحة التعلم الشخصية"
+  >
+
+  <title>AI PLS — لوحة التعلم</title>
+
+
+  <!-- Fonts -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- Existing Global Design -->
+
+  <link
+    rel="stylesheet"
+    href="css/global.css"
+  >
+
+
+  <style>
+
+    /* =====================================================
+       AI PLS — DASHBOARD
+    ===================================================== */
+
+    :root {
+      --dashboard-bg: #070b17;
+      --dashboard-card: rgba(15, 23, 42, 0.72);
+      --dashboard-border: rgba(255, 255, 255, 0.08);
+      --dashboard-text: #f8fafc;
+      --dashboard-muted: #94a3b8;
+      --dashboard-primary: #7c3aed;
+      --dashboard-secondary: #06b6d4;
+      --dashboard-success: #22c55e;
+    }
+
+
+    * {
+      box-sizing: border-box;
+    }
+
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(
+          circle at 10% 10%,
+          rgba(124, 58, 237, 0.16),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(6, 182, 212, 0.12),
+          transparent 28%
+        ),
+        var(--dashboard-bg);
+
+      color: var(--dashboard-text);
+
+      font-family:
+        "Cairo",
+        "IBM Plex Sans Arabic",
+        sans-serif;
+    }
+
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+
+    button {
+      font-family: inherit;
+    }
+
+
+    /* =====================================================
+       APP SHELL
+    ===================================================== */
+
+    .dashboard-shell {
+      width: min(1440px, calc(100% - 32px));
+      margin: auto;
+      min-height: 100vh;
+      padding: 24px 0 40px;
+    }
+
+
+    /* =====================================================
+       TOPBAR
+    ===================================================== */
+
+    .dashboard-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+
+      margin-bottom: 28px;
+    }
+
+
+    .dashboard-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+
+    .dashboard-brand-mark {
+      width: 42px;
+      height: 42px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #7c3aed,
+          #06b6d4
+        );
+
+      box-shadow:
+        0 10px 30px
+        rgba(124, 58, 237, 0.25);
+
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+
+    .dashboard-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+
+    .user-avatar {
+      width: 42px;
+      height: 42px;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #7c3aed,
+          #06b6d4
+        );
+
+      font-weight: 800;
+    }
+
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.4;
+    }
+
+
+    .user-name {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+
+    .user-label {
+      font-size: 11px;
+      color: var(--dashboard-muted);
+    }
+
+
+    /* =====================================================
+       WELCOME
+    ===================================================== */
+
+    .welcome-section {
+      margin-bottom: 28px;
+    }
+
+
+    .welcome-eyebrow {
+      color: #a78bfa;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+
+    .welcome-section h1 {
+      margin: 0;
+
+      font-size:
+        clamp(28px, 5vw, 46px);
+
+      line-height: 1.25;
+    }
+
+
+    .gradient-text {
+      background:
+        linear-gradient(
+          90deg,
+          #a78bfa,
+          #22d3ee
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+    }
+
+
+    .welcome-section p {
+      margin: 10px 0 0;
+
+      max-width: 650px;
+
+      color: var(--dashboard-muted);
+
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+
+    /* =====================================================
+       QUICK ACTIONS
+    ===================================================== */
+
+    .quick-actions {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+      gap: 14px;
+
+      margin-bottom: 28px;
+    }
+
+
+    .quick-action {
+      border: 1px solid var(--dashboard-border);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.06),
+          rgba(255,255,255,0.025)
+        );
+
+      border-radius: 20px;
+
+      padding: 18px;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+    }
+
+
+    .quick-action:hover {
+      transform: translateY(-4px);
+
+      border-color:
+        rgba(167, 139, 250, 0.35);
+
+      background:
+        rgba(255,255,255,0.08);
+    }
+
+
+    .quick-icon {
+      font-size: 23px;
+      margin-bottom: 10px;
+    }
+
+
+    .quick-action strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+
+    .quick-action span {
+      color: var(--dashboard-muted);
+      font-size: 11px;
+    }
+
+
+    /* =====================================================
+       MAIN GRID
+    ===================================================== */
+
+    .dashboard-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.35fr 0.65fr;
+
+      gap: 20px;
+
+      align-items: start;
+    }
+
+
+    .dashboard-column {
+      display: grid;
+      gap: 20px;
+    }
+
+
+    /* =====================================================
+       CARDS
+    ===================================================== */
+
+    .dashboard-card {
+      border: 1px solid var(--dashboard-border);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(15, 23, 42, 0.82),
+          rgba(15, 23, 42, 0.58)
+        );
+
+      border-radius: 24px;
+
+      padding: 22px;
+
+      backdrop-filter: blur(18px);
+
+      box-shadow:
+        0 20px 60px
+        rgba(0,0,0,0.18);
+    }
+
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 20px;
+    }
+
+
+    .card-title {
+      margin: 0;
+
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+
+    .card-link {
+      color: #a78bfa;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+
+    /* =====================================================
+       PROGRESS
+    ===================================================== */
+
+    .progress-overview {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+
+    .progress-circle {
+      width: 110px;
+      height: 110px;
+
+      flex: 0 0 auto;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background:
+        conic-gradient(
+          #8b5cf6 68%,
+          rgba(255,255,255,0.08) 68%
+        );
+
+      position: relative;
+    }
+
+
+    .progress-circle::after {
+      content: "";
+
+      position: absolute;
+
+      width: 82px;
+      height: 82px;
+
+      border-radius: 50%;
+
+      background: #0b1222;
+    }
+
+
+    .progress-value {
+      position: relative;
+      z-index: 1;
+
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+
+    .progress-details {
+      flex: 1;
+    }
+
+
+    .progress-details h3 {
+      margin: 0 0 6px;
+
+      font-size: 18px;
+    }
+
+
+    .progress-details p {
+      margin: 0;
+
+      color: var(--dashboard-muted);
+
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+
+    .mini-progress {
+      height: 8px;
+
+      margin-top: 14px;
+
+      border-radius: 20px;
+
+      background:
+        rgba(255,255,255,0.07);
+
+      overflow: hidden;
+    }
+
+
+    .mini-progress span {
+      display: block;
+
+      height: 100%;
+
+      width: 68%;
+
+      border-radius: inherit;
+
+      background:
+        linear-gradient(
+          90deg,
+          #7c3aed,
+          #06b6d4
+        );
+    }
+
+
+    /* =====================================================
+       TODAY TASKS
+    ===================================================== */
+
+    .task-list {
+      display: grid;
+      gap: 12px;
+    }
+
+
+    .task-item {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+
+      padding: 14px;
+
+      border-radius: 16px;
+
+      background:
+        rgba(255,255,255,0.035);
+
+      border: 1px solid
+        rgba(255,255,255,0.05);
+    }
+
+
+    .task-check {
+      width: 22px;
+      height: 22px;
+
+      flex: 0 0 auto;
+
+      border-radius: 7px;
+
+      border: 1px solid
+        rgba(255,255,255,0.18);
+
+      display: grid;
+      place-items: center;
+
+      font-size: 12px;
+    }
+
+
+    .task-check.completed {
+      background: #22c55e;
+      border-color: #22c55e;
+    }
+
+
+    .task-content {
+      flex: 1;
+    }
+
+
+    .task-content strong {
+      display: block;
+      font-size: 13px;
+    }
+
+
+    .task-content span {
+      color: var(--dashboard-muted);
+      font-size: 11px;
+    }
+
+
+    /* =====================================================
+       AI CARD
+    ===================================================== */
+
+    .ai-card {
+      position: relative;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(124,58,237,0.22),
+          rgba(6,182,212,0.10)
+        );
+    }
+
+
+    .ai-glow {
+      position: absolute;
+
+      width: 180px;
+      height: 180px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(124,58,237,0.20);
+
+      filter: blur(50px);
+
+      top: -80px;
+      left: -50px;
+    }
+
+
+    .ai-content {
+      position: relative;
+      z-index: 1;
+    }
+
+
+    .ai-badge {
+      display: inline-flex;
+
+      padding: 6px 10px;
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,0.08);
+
+      color: #c4b5fd;
+
+      font-size: 10px;
+      font-weight: 700;
+
+      margin-bottom: 12px;
+    }
+
+
+    .ai-card h2 {
+      margin: 0 0 8px;
+
+      font-size: 22px;
+    }
+
+
+    .ai-card p {
+      margin: 0 0 18px;
+
+      color: #cbd5e1;
+
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+
+    .ai-button {
+      border: 0;
+
+      padding: 11px 18px;
+
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #7c3aed,
+          #06b6d4
+        );
+
+      color: white;
+
+      font-weight: 700;
+
+      cursor: pointer;
+    }
+
+
+    /* =====================================================
+       GOALS
+    ===================================================== */
+
+    .goal-list {
+      display: grid;
+      gap: 13px;
+    }
+
+
+    .goal-item {
+      padding: 15px;
+
+      border-radius: 16px;
+
+      background:
+        rgba(255,255,255,0.035);
+
+      border:
+        1px solid
+        rgba(255,255,255,0.05);
+    }
+
+
+    .goal-top {
+      display: flex;
+      justify-content: space-between;
+
+      margin-bottom: 9px;
+    }
+
+
+    .goal-top strong {
+      font-size: 12px;
+    }
+
+
+    .goal-top span {
+      color: #a78bfa;
+      font-size: 11px;
+    }
+
+
+    .goal-bar {
+      height: 7px;
+
+      background:
+        rgba(255,255,255,0.07);
+
+      border-radius: 20px;
+
+      overflow: hidden;
+    }
+
+
+    .goal-bar span {
+      display: block;
+
+      height: 100%;
+
+      border-radius: inherit;
+
+      background:
+        linear-gradient(
+          90deg,
+          #7c3aed,
+          #06b6d4
+        );
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .dashboard-footer {
+      text-align: center;
+
+      color: #64748b;
+
+      font-size: 11px;
+
+      padding-top: 30px;
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+    ===================================================== */
+
+    @media (max-width: 1050px) {
+
+      .quick-actions {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+    @media (max-width: 650px) {
+
+      .dashboard-shell {
+        width: min(
+          100% - 22px,
+          1440px
+        );
+
+        padding-top: 16px;
+      }
+
+
+      .dashboard-topbar {
+        margin-bottom: 22px;
+      }
+
+
+      .dashboard-brand {
+        font-size: 19px;
+      }
+
+
+      .dashboard-brand-mark {
+        width: 38px;
+        height: 38px;
+      }
+
+
+      .user-info {
+        display: none;
+      }
+
+
+      .quick-actions {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+      }
+
+
+      .quick-action {
+        padding: 14px;
+      }
+
+
+      .dashboard-card {
+        padding: 17px;
+
+        border-radius: 20px;
+      }
+
+
+      .progress-overview {
+        align-items: flex-start;
+      }
+
+
+      .progress-circle {
+        width: 88px;
+        height: 88px;
+      }
+
+
+      .progress-circle::after {
+        width: 66px;
+        height: 66px;
+      }
+
+
+      .progress-value {
+        font-size: 18px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <div class="dashboard-shell">
+
+
+    <!-- =================================================
+         TOPBAR
+    ================================================== -->
+
+    <header class="dashboard-topbar">
+
+
+      <a
+        href="dashboard.html"
+        class="dashboard-brand"
+      >
+
+        <span class="dashboard-brand-mark">
+          AI
+        </span>
+
+        <span>
+          AI PLS
+        </span>
+
+      </a>
+
+
+      <div class="dashboard-user">
+
+        <div class="user-info">
+
+          <span
+            class="user-name"
+            id="userName"
+          >
+            الطالب
+          </span>
+
+          <span class="user-label">
+            مساحة التعلم الشخصية
+          </span>
+
+        </div>
+
+
+        <div
+          class="user-avatar"
+          id="userAvatar"
+        >
+          AI
+        </div>
+
+      </div>
+
+    </header>
+
+
+
+    <!-- =================================================
+         WELCOME
+    ================================================== -->
+
+    <section class="welcome-section">
+
+      <div class="welcome-eyebrow">
+        AI PERSONAL LEARNING SYSTEM
+      </div>
+
+
+      <h1>
+
+        مرحباً بك
+        <span
+          class="gradient-text"
+          id="welcomeName"
+        >
+          👋
+        </span>
+
+      </h1>
+
+
+      <p>
+        هذه مساحتك التعليمية الشخصية.
+        تابع أهدافك، أنجز مهامك، وواصل بناء
+        مستقبلك خطوة بخطوة.
+      </p>
+
+    </section>
+
+
+
+    <!-- =================================================
+         QUICK ACTIONS
+    ================================================== -->
+
+    <section class="quick-actions">
+
+
+      <button class="quick-action">
+
+        <div class="quick-icon">
+          🤖
+        </div>
+
+        <strong>
+          اسأل AI
+        </strong>
+
+        <span>
+          احصل على مساعدة فورية
+        </span>
+
+      </button>
+
+
+      <button class="quick-action">
+
+        <div class="quick-icon">
+          📚
+        </div>
+
+        <strong>
+          ابدأ التعلم
+        </strong>
+
+        <span>
+          واصل آخر درس
+        </span>
+
+      </button>
+
+
+      <button class="quick-action">
+
+        <div class="quick-icon">
+          📝
+        </div>
+
+        <strong>
+          اختبار سريع
+        </strong>
+
+        <span>
+          اختبر معلوماتك
+        </span>
+
+      </button>
+
+
+      <button class="quick-action">
+
+        <div class="quick-icon">
+          🎯
+        </div>
+
+        <strong>
+          أهدافي
+        </strong>
+
+        <span>
+          راجع أهدافك الحالية
+        </span>
+
+      </button>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         DASHBOARD GRID
+    ================================================== -->
+
+    <main class="dashboard-grid">
+
+
+      <!-- =================================================
+           LEFT COLUMN
+      ================================================== -->
+
+      <div class="dashboard-column">
+
+
+        <!-- PROGRESS -->
+
+        <section class="dashboard-card">
+
+          <div class="card-header">
+
+            <h2 class="card-title">
+              نظرة عامة على تقدمك
+            </h2>
+
+            <a
+              href="#"
+              class="card-link"
+            >
+              التفاصيل
+            </a>
+
+          </div>
+
+
+          <div class="progress-overview">
+
+            <div class="progress-circle">
+
+              <span class="progress-value">
+                68%
+              </span>
+
+            </div>
+
+
+            <div class="progress-details">
+
+              <h3>
+                أداء ممتاز 🔥
+              </h3>
+
+              <p>
+                أنت تتقدم بشكل جيد.
+                استمر على نفس الإيقاع للوصول
+                إلى أهدافك التعليمية.
+              </p>
+
+
+              <div class="mini-progress">
+                <span></span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- TODAY TASKS -->
+
+        <section class="dashboard-card">
+
+          <div class="card-header">
+
+            <h2 class="card-title">
+              مهام اليوم
+            </h2>
+
+            <a
+              href="#"
+              class="card-link"
+            >
+              عرض الكل
+            </a>
+
+          </div>
+
+
+          <div class="task-list">
+
+
+            <div class="task-item">
+
+              <div class="task-check completed">
+                ✓
+              </div>
+
+              <div class="task-content">
+
+                <strong>
+                  مراجعة أساسيات Python
+                </strong>
+
+                <span>
+                  45 دقيقة
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="task-item">
+
+              <div class="task-check">
+              </div>
+
+              <div class="task-content">
+
+                <strong>
+                  دراسة أساسيات الذكاء الاصطناعي
+                </strong>
+
+                <span>
+                  60 دقيقة
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="task-item">
+
+              <div class="task-check">
+              </div>
+
+              <div class="task-content">
+
+                <strong>
+                  حل اختبار قصير
+                </strong>
+
+                <span>
+                  20 دقيقة
+                </span>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </section>
+
+
+      </div>
+
+
+
+      <!-- =================================================
+           RIGHT COLUMN
+      ================================================== -->
+
+      <div class="dashboard-column">
+
+
+        <!-- AI ASSISTANT -->
+
+        <section class="dashboard-card ai-card">
+
+          <div class="ai-glow"></div>
+
+
+          <div class="ai-content">
+
+            <span class="ai-badge">
+              AI ASSISTANT
+            </span>
+
+
+            <h2>
+              مساعدك الذكي
+            </h2>
+
+
+            <p>
+              اسأل، لخّص، اشرح، خطط،
+              أو اطلب مساعدة في أي موضوع
+              تتعلمه.
+            </p>
+
+
+            <button
+              class="ai-button"
+              id="aiButton"
+            >
+              ابدأ المحادثة ←
+            </button>
+
+          </div>
+
+        </section>
+
+
+
+        <!-- GOALS -->
+
+        <section class="dashboard-card">
+
+          <div class="card-header">
+
+            <h2 class="card-title">
+              أهدافي
+            </h2>
+
+            <a
+              href="#"
+              class="card-link"
+            >
+              إدارة
+            </a>
+
+          </div>
+
+
+          <div class="goal-list">
+
+
+            <div class="goal-item">
+
+              <div class="goal-top">
+
+                <strong>
+                  تعلم Python
+                </strong>
+
+                <span>
+                  75%
+                </span>
+
+              </div>
+
+
+              <div class="goal-bar">
+
+                <span style="width: 75%;"></span>
+
+              </div>
+
+            </div>
+
+
+            <div class="goal-item">
+
+              <div class="goal-top">
+
+                <strong>
+                  الذكاء الاصطناعي
+                </strong>
+
+                <span>
+                  45%
+                </span>
+
+              </div>
+
+
+              <div class="goal-bar">
+
+                <span style="width: 45%;"></span>
+
+              </div>
+
+            </div>
+
+
+            <div class="goal-item">
+
+              <div class="goal-top">
+
+                <strong>
+                  اللغة الإنجليزية
+                </strong>
+
+                <span>
+                  62%
+                </span>
+
+              </div>
+
+
+              <div class="goal-bar">
+
+                <span style="width: 62%;"></span>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </section>
+
+
+      </div>
+
+
+    </main>
+
+
+
+    <footer class="dashboard-footer">
+
+      AI PLS — Personal Learning System
+      <br>
+      © 2026
+
+    </footer>
+
+
+  </div>
+
+
+
+  <!-- =====================================================
+       DASHBOARD JAVASCRIPT
+  ====================================================== -->
+
+  <script>
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+
+
+        /* ===============================================
+           LOGIN CHECK
+        =============================================== */
+
+        const loggedIn =
+          localStorage.getItem(
+            "aipls_logged_in"
+          );
+
+
+        if (loggedIn !== "true") {
+
+          window.location.href =
+            "login.html";
+
+          return;
+
+        }
+
+
+        /* ===============================================
+           USER NAME
+        =============================================== */
+
+        const email =
+          localStorage.getItem(
+            "aipls_user_email"
+          );
+
+
+        const userName =
+          document.getElementById(
+            "userName"
+          );
+
+
+        const welcomeName =
+          document.getElementById(
+            "welcomeName"
+          );
+
+
+        const userAvatar =
+          document.getElementById(
+            "userAvatar"
+          );
+
+
+        if (email) {
+
+          const name =
+            email
+              .split("@")[0]
+              .replace(/[._-]/g, " ");
+
+
+          const formattedName =
+            name.charAt(0).toUpperCase()
+            + name.slice(1);
+
+
+          if (userName) {
+
+            userName.textContent =
+              formattedName;
+
+          }
+
+
+          if (welcomeName) {
+
+            welcomeName.textContent =
+              formattedName + " 👋";
+
+          }
+
+
+          if (userAvatar) {
+
+            userAvatar.textContent =
+              formattedName
+                .charAt(0)
+                .toUpperCase();
+
+          }
+
+        }
+
+
+        /* ===============================================
+           AI BUTTON
+        =============================================== */
+
+        const aiButton =
+          document.getElementById(
+            "aiButton"
+          );
+
+
+        if (aiButton) {
+
+          aiButton.addEventListener(
+            "click",
+            () => {
+
+              alert(
+                "مساعد AI PLS سيكون متاحًا في المرحلة القادمة 🤖"
+              );
+
+            }
+          );
+
+        }
+
+
+      }
+    );
+
+  </script>
+
+
+</body>
+
+  </html>
